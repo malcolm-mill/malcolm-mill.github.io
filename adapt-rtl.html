@@ -9,12 +9,21 @@
   <script src="./assets/javascripts/html5.js"></script>
 <![endif]-->
 <link rel="stylesheet" href="./assets/stylesheets/demo.css" />
-<!--[if (gt IE 8) | (IEMobile)]><!-->
-  <link rel="stylesheet" href="./assets/stylesheets/unsemantic-grid-responsive.css" />
-<!--<![endif]-->
-<!--[if (lt IE 9) & (!IEMobile)]>
-  <link rel="stylesheet" href="./assets/stylesheets/ie.css" />
-<![endif]-->
+<link rel="stylesheet" href="./assets/stylesheets/unsemantic-grid-base-rtl.css" />
+<noscript>
+  <link rel="stylesheet" href="./assets/stylesheets/unsemantic-grid-mobile-rtl.css" />
+</noscript>
+<script>
+  var ADAPT_CONFIG = {
+    path: './assets/stylesheets/',
+    dynamic: true,
+    range: [
+      '0 to 767px = unsemantic-grid-mobile-rtl.css',
+      '767px = unsemantic-grid-desktop-rtl.css'
+    ]
+  };
+</script>
+<script src="./assets/javascripts/adapt.min.js"></script>
 </head>
 <body>
   <div class="grid-container">
@@ -22,7 +31,7 @@
       <h1 class="grid-100">
         <a href="http://unsemantic.com/">Unsemantic</a>
         <br />
-        Responsive Demo
+        Adapt.js Demo - <abbr title="Right To Left">RTL</abbr>
       </h1>
       <hr />
     </div>
