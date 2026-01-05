@@ -1,0 +1,23 @@
+site_name: Malcolm Mill
+site_url: https://malcolm-mill.github.io/
+
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - navigation.expand
+    - content.code.copy
+    - toc.follow
+
+nav:
+  - Home: index.md
+
+markdown_extensions:
+  - admonition
+  - footnotes
+  - tables
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+
