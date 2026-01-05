@@ -16,8 +16,12 @@ markdown_extensions:
   - admonition
   - footnotes
   - tables
+  - attr_list
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
           class: mermaid
+
+extra_javascript:
+  - js/external-links.js
 
