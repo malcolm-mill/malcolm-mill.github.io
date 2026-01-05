@@ -1,0 +1,719 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://malcolm-mill.github.io/LLM/transformer-weights-explained/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Transformer Weights Explained: What They Actually Are - Malcolm Mill</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#transformer-weights-explained-what-they-actually-are" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Malcolm Mill" class="md-header__button md-logo" aria-label="Malcolm Mill" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Malcolm Mill
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Transformer Weights Explained: What They Actually Are
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Malcolm Mill" class="md-nav__button md-logo" aria-label="Malcolm Mill" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Malcolm Mill
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#common-misconception" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Misconception
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-tokens-actually-flow-through-the-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Tokens Actually Flow Through the Model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-key-weight-tensors-in-a-transformer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Key Weight Tensors in a Transformer
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Key Weight Tensors in a Transformer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-token-embeddings-token_embdweight" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Token Embeddings (token_embd.weight)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-attention-weights-per-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Attention Weights (per layer)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-feed-forward-weights-per-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Feed-Forward Weights (per layer)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-output-layer-outputweight" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Output Layer (output.weight)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analogy-weights-as-lenses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analogy: Weights as "Lenses"
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-the-tokentoken-model-might-be-confused-with" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the "Token→Token" Model Might Be Confused With
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matrix-multiplication-the-core-operation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matrix Multiplication: The Core Operation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-a-single-attention-head" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: A Single Attention Head
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stored-vs-computed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stored vs. Computed
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-quantization-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Quantization Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="transformer-weights-explained-what-they-actually-are">Transformer Weights Explained: What They Actually Are</h1>
+<h2 id="common-misconception">Common Misconception</h2>
+<p>A common misconception is that weights represent the "value of a path from one token to another." This is incorrect.</p>
+<p><strong>Weights are learned numerical parameters</strong> stored in matrices (tensors). They don't represent direct "paths between tokens" — instead, they define <strong>transformations</strong> that the model applies to convert inputs into outputs through many layers.</p>
+<div class="highlight"><pre><span></span><code>Weights ≠ &quot;Token A → Token B = 0.7&quot;
+
+Weights = Matrices that transform vectors through mathematical operations
+</code></pre></div>
+<hr />
+<h2 id="how-tokens-actually-flow-through-the-model">How Tokens Actually Flow Through the Model</h2>
+<pre class="mermaid"><code>flowchart TB
+    subgraph INPUT["INPUT"]
+        T1["Token: 'Hello'"]
+        T2["Token: 'world'"]
+    end
+
+    subgraph EMB["EMBEDDING LAYER"]
+        E1["Vector: [0.12, -0.45, 0.89, ...]&lt;br/&gt;4096 dimensions"]
+        E2["Vector: [0.34, 0.21, -0.56, ...]&lt;br/&gt;4096 dimensions"]
+    end
+
+    subgraph TRANSFORM["TRANSFORMER LAYERS × N"]
+        ATT["Attention&lt;br/&gt;(weights transform queries, keys, values)"]
+        FFN["Feed-Forward Network&lt;br/&gt;(weights transform representations)"]
+    end
+
+    subgraph OUTPUT["OUTPUT"]
+        LOGITS["Logits: probability scores&lt;br/&gt;for ALL vocab tokens"]
+        NEXT["Next token: '!'&lt;br/&gt;(highest probability)"]
+    end
+
+    T1 --&gt; E1
+    T2 --&gt; E2
+    E1 &amp; E2 --&gt; ATT --&gt; FFN --&gt; LOGITS --&gt; NEXT
+
+    style EMB fill:#4a90d9,stroke:#2c5282,color:#fff
+    style TRANSFORM fill:#48bb78,stroke:#276749,color:#fff
+    style LOGITS fill:#ed8936,stroke:#c05621,color:#fff</code></pre>
+<hr />
+<h2 id="the-key-weight-tensors-in-a-transformer">The Key Weight Tensors in a Transformer</h2>
+<p>Each tensor serves a specific mathematical purpose:</p>
+<h3 id="1-token-embeddings-token_embdweight">1. Token Embeddings (<code>token_embd.weight</code>)</h3>
+<div class="highlight"><pre><span></span><code>Shape: [vocab_size × embedding_dim]
+Example: [32000 × 4096]
+</code></pre></div>
+<ul>
+<li>Maps each token ID to a dense vector</li>
+<li>Token 1547 ("Hello") → look up row 1547 → get 4096-dimensional vector</li>
+<li><strong>This is a lookup table, not a path</strong></li>
+</ul>
+<h3 id="2-attention-weights-per-layer">2. Attention Weights (per layer)</h3>
+<div class="highlight"><pre><span></span><code>Q weight: [hidden_dim × hidden_dim]  — transforms input to &quot;Query&quot;
+K weight: [hidden_dim × hidden_dim]  — transforms input to &quot;Key&quot;  
+V weight: [hidden_dim × hidden_dim]  — transforms input to &quot;Value&quot;
+O weight: [hidden_dim × hidden_dim]  — projects attention output
+</code></pre></div>
+<ul>
+<li>These matrices learn <strong>what to pay attention to</strong></li>
+<li>Attention scores between tokens are <em>computed at runtime</em>, not stored</li>
+</ul>
+<h3 id="3-feed-forward-weights-per-layer">3. Feed-Forward Weights (per layer)</h3>
+<div class="highlight"><pre><span></span><code>ffn_up:   [hidden_dim × intermediate_dim]
+ffn_down: [intermediate_dim × hidden_dim]
+ffn_gate: [hidden_dim × intermediate_dim]  (for gated architectures)
+</code></pre></div>
+<ul>
+<li>Transform the representation through a non-linear "thinking" step</li>
+</ul>
+<h3 id="4-output-layer-outputweight">4. Output Layer (<code>output.weight</code>)</h3>
+<div class="highlight"><pre><span></span><code>Shape: [embedding_dim × vocab_size]
+Example: [4096 × 32000]
+</code></pre></div>
+<ul>
+<li>Converts final hidden state → scores for every possible next token</li>
+</ul>
+<hr />
+<h2 id="analogy-weights-as-lenses">Analogy: Weights as "Lenses"</h2>
+<pre class="mermaid"><code>flowchart LR
+    subgraph WRONG["❌ WRONG MENTAL MODEL"]
+        A1[Token A] --&gt;|"weight = 0.7"| B1[Token B]
+        A1 --&gt;|"weight = 0.2"| C1[Token C]
+    end
+
+    subgraph RIGHT["✅ CORRECT MENTAL MODEL"]
+        IN["Input Vector&lt;br/&gt;[0.1, 0.5, -0.3, ...]"]
+        W["Weight Matrix&lt;br/&gt;(learned lens)"]
+        OUT["Output Vector&lt;br/&gt;[0.8, -0.2, 0.4, ...]"]
+        IN --&gt;|"matrix multiply"| W --&gt;|"produces"| OUT
+    end</code></pre>
+<p>Weights are like <strong>lenses</strong> that transform the meaning of input vectors. The model learns during training how to shape these lenses so that, after many transformations, the final output correctly predicts the next token.</p>
+<hr />
+<h2 id="what-the-tokentoken-model-might-be-confused-with">What the "Token→Token" Model Might Be Confused With</h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>What It Is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>N-gram models</strong></td>
+<td>Older models that <em>did</em> store direct token→token probabilities</td>
+</tr>
+<tr>
+<td><strong>Attention scores</strong></td>
+<td>Computed <em>at runtime</em> (not stored) — how much each token attends to others</td>
+</tr>
+<tr>
+<td><strong>Graph neural networks</strong></td>
+<td>Where edge weights connect nodes directly</td>
+</tr>
+</tbody>
+</table>
+<p>In transformers, the "relationship" between tokens is <strong>computed dynamically</strong> through matrix operations using the stored weights — it's not pre-stored as a lookup table.</p>
+<hr />
+<h2 id="matrix-multiplication-the-core-operation">Matrix Multiplication: The Core Operation</h2>
+<p>Every layer applies weights through matrix multiplication:</p>
+<pre class="mermaid"><code>flowchart LR
+    subgraph MATMUL["MATRIX MULTIPLICATION"]
+        INPUT["Input Vector&lt;br/&gt;[1 × 4096]"]
+        WEIGHT["Weight Matrix&lt;br/&gt;[4096 × 4096]"]
+        OUTPUT["Output Vector&lt;br/&gt;[1 × 4096]"]
+
+        INPUT --&gt; WEIGHT --&gt; OUTPUT
+    end</code></pre>
+<p><strong>Mathematical form:</strong></p>
+<div class="highlight"><pre><span></span><code>output = input × weight_matrix + bias
+</code></pre></div>
+<p>Each element in the output is a weighted sum of all input elements. The weights determine <em>how</em> to combine the input values.</p>
+<hr />
+<h2 id="example-a-single-attention-head">Example: A Single Attention Head</h2>
+<pre class="mermaid"><code>flowchart TB
+    subgraph ATTENTION["SINGLE ATTENTION HEAD"]
+        direction TB
+
+        X["Input X&lt;br/&gt;(sequence of vectors)"]
+
+        subgraph PROJ["PROJECTIONS (using stored weights)"]
+            Q["Q = X × W_q"]
+            K["K = X × W_k"]
+            V["V = X × W_v"]
+        end
+
+        SCORES["Attention Scores&lt;br/&gt;softmax(Q × K^T / √d)&lt;br/&gt;&lt;em&gt;computed at runtime&lt;/em&gt;"]
+
+        OUT["Output = Scores × V"]
+    end
+
+    X --&gt; Q &amp; K &amp; V
+    Q &amp; K --&gt; SCORES
+    SCORES &amp; V --&gt; OUT
+
+    style PROJ fill:#4a90d9,stroke:#2c5282,color:#fff
+    style SCORES fill:#ed8936,stroke:#c05621,color:#fff</code></pre>
+<p><strong>Key insight:</strong> The weights (<code>W_q</code>, <code>W_k</code>, <code>W_v</code>) are stored, but the attention scores (which tokens attend to which) are <strong>computed fresh</strong> for every input.</p>
+<hr />
+<h2 id="stored-vs-computed">Stored vs. Computed</h2>
+<table>
+<thead>
+<tr>
+<th>Stored in GGUF Weights</th>
+<th>Computed at Runtime</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Weight matrices (parameters)</td>
+<td>Token-to-token attention scores</td>
+</tr>
+<tr>
+<td>Token embeddings (lookup table)</td>
+<td>Attention patterns</td>
+</tr>
+<tr>
+<td>Layer normalization values</td>
+<td>Intermediate activations</td>
+</tr>
+<tr>
+<td>Bias terms</td>
+<td>Probability distributions</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="why-quantization-works">Why Quantization Works</h2>
+<p>Since weights are just numbers in matrices, we can <strong>compress</strong> them:</p>
+<table>
+<thead>
+<tr>
+<th>Precision</th>
+<th>Bits per Weight</th>
+<th>Memory for 7B Model</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FP32</td>
+<td>32 bits</td>
+<td>~28 GB</td>
+</tr>
+<tr>
+<td>FP16</td>
+<td>16 bits</td>
+<td>~14 GB</td>
+</tr>
+<tr>
+<td>Q8_0</td>
+<td>8 bits</td>
+<td>~7 GB</td>
+</tr>
+<tr>
+<td>Q4_K</td>
+<td>~4.5 bits</td>
+<td>~4 GB</td>
+</tr>
+<tr>
+<td>Q2_K</td>
+<td>~2.5 bits</td>
+<td>~2.5 GB</td>
+</tr>
+</tbody>
+</table>
+<p>Quantization trades precision for size. The model still performs the same operations, just with less precise numbers.</p>
+<hr />
+<h2 id="summary">Summary</h2>
+<p>The magic of LLMs is that billions of weight values, when combined through matrix multiplications across many layers, produce emergent behavior that <em>appears</em> to understand token relationships — but those relationships are <strong>computed, not stored</strong>.</p>
+<pre class="mermaid"><code>flowchart TB
+    subgraph SUMMARY["KEY TAKEAWAY"]
+        W["Billions of Weights&lt;br/&gt;(stored parameters)"]
+        M["Matrix Operations&lt;br/&gt;(at runtime)"]
+        E["Emergent Understanding&lt;br/&gt;(appears intelligent)"]
+
+        W --&gt;|"combined through"| M --&gt;|"produces"| E
+    end
+
+    style W fill:#9f7aea,stroke:#6b46c1,color:#fff
+    style M fill:#ed8936,stroke:#c05621,color:#fff
+    style E fill:#48bb78,stroke:#276749,color:#fff</code></pre>
+<hr />
+<p><em>Guide created to clarify transformer weight mechanics</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.indexes", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../js/external-links.js"></script>
+      
+    
+  </body>
+</html>

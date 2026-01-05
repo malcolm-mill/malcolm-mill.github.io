@@ -1,0 +1,1398 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://malcolm-mill.github.io/LLM/gguf-file-structure-guide/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>GGUF File Format: Complete Structural Guide - Malcolm Mill</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#gguf-file-format-complete-structural-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Malcolm Mill" class="md-header__button md-logo" aria-label="Malcolm Mill" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Malcolm Mill
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              GGUF File Format: Complete Structural Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Malcolm Mill" class="md-nav__button md-logo" aria-label="Malcolm Mill" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Malcolm Mill
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#high-level-file-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        High-Level File Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-1-header" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section 1: Header
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 1: Header">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#header-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Header Layout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#header-fields-explained" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Header Fields Explained
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#version-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version History
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-2-metadata-key-value-pairs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section 2: Metadata Key-Value Pairs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 2: Metadata Key-Value Pairs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metadata-structure-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metadata Structure Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#value-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Value Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type-id-reference-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type ID Reference Table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-metadata-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Metadata Keys
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#string-encoding-detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        String Encoding Detail
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#array-encoding-detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Array Encoding Detail
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-3-tensor-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section 3: Tensor Information
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 3: Tensor Information">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tensor-info-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tensor Info Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tensor-info-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tensor Info Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tensorquantization-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tensor/Quantization Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quantization-type-ids" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantization Type IDs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-4-tensor-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section 4: Tensor Data
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 4: Tensor Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alignment-and-padding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alignment and Padding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-section-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Section Properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#complete-file-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complete File Layout
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#memory-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Memory Mapping
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Memory Mapping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#benefits-of-memory-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Benefits of Memory Mapping
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#typical-model-architecture-in-gguf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Typical Model Architecture in GGUF
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reading-gguf-in-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reading GGUF in Python
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tools-for-working-with-gguf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tools for Working with GGUF
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="gguf-file-format-complete-structural-guide">GGUF File Format: Complete Structural Guide</h1>
+<h2 id="overview">Overview</h2>
+<p><strong>GGUF</strong> (GPT-Generated Unified Format) is a binary file format designed for storing large language models. It is the successor to the older GGML format and is primarily used by <strong>llama.cpp</strong> and compatible inference engines. GGUF is optimized for fast loading, memory-mapped access, and single-file distribution of quantized models.</p>
+<hr />
+<h2 id="high-level-file-structure">High-Level File Structure</h2>
+<p>A GGUF file is organized into four major logical regions, read sequentially:</p>
+<pre class="mermaid"><code>flowchart TB
+    subgraph GGUF["GGUF FILE STRUCTURE"]
+        direction TB
+        A["📋 HEADER&lt;br/&gt;Magic + Version + Counts"]
+        B["🏷️ METADATA KV PAIRS&lt;br/&gt;Model Configuration"]
+        C["📐 TENSOR INFOS&lt;br/&gt;Tensor Descriptors"]
+        D["💾 TENSOR DATA&lt;br/&gt;Quantized Weights"]
+    end
+
+    A --&gt; B --&gt; C --&gt; D
+
+    style A fill:#4a90d9,stroke:#2c5282,color:#fff
+    style B fill:#48bb78,stroke:#276749,color:#fff
+    style C fill:#ed8936,stroke:#c05621,color:#fff
+    style D fill:#9f7aea,stroke:#6b46c1,color:#fff</code></pre>
+<hr />
+<h2 id="section-1-header">Section 1: Header</h2>
+<p>The header is the first <strong>24 bytes</strong> of every GGUF file and contains essential identification and counting information.</p>
+<h3 id="header-layout">Header Layout</h3>
+<pre class="mermaid"><code>flowchart LR
+    subgraph HEADER["HEADER (24 bytes)"]
+        direction LR
+        M["MAGIC&lt;br/&gt;4 bytes&lt;br/&gt;'GGUF'"]
+        V["VERSION&lt;br/&gt;4 bytes&lt;br/&gt;uint32"]
+        T["TENSOR_COUNT&lt;br/&gt;8 bytes&lt;br/&gt;uint64"]
+        K["METADATA_KV_COUNT&lt;br/&gt;8 bytes&lt;br/&gt;uint64"]
+    end
+
+    M --&gt; V --&gt; T --&gt; K
+
+    style M fill:#e53e3e,stroke:#c53030,color:#fff
+    style V fill:#dd6b20,stroke:#c05621,color:#fff
+    style T fill:#d69e2e,stroke:#b7791f,color:#fff
+    style K fill:#38a169,stroke:#276749,color:#fff</code></pre>
+<h3 id="header-fields-explained">Header Fields Explained</h3>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Size</th>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x00</td>
+<td>4</td>
+<td>Magic</td>
+<td>char[4]</td>
+<td>ASCII string <code>GGUF</code> (0x47475546) - identifies file format</td>
+</tr>
+<tr>
+<td>0x04</td>
+<td>4</td>
+<td>Version</td>
+<td>uint32_t</td>
+<td>Format version (currently 3)</td>
+</tr>
+<tr>
+<td>0x08</td>
+<td>8</td>
+<td>Tensor Count</td>
+<td>uint64_t</td>
+<td>Number of tensors stored in the file</td>
+</tr>
+<tr>
+<td>0x10</td>
+<td>8</td>
+<td>Metadata KV Count</td>
+<td>uint64_t</td>
+<td>Number of metadata key-value pairs</td>
+</tr>
+</tbody>
+</table>
+<h3 id="version-history">Version History</h3>
+<pre class="mermaid"><code>timeline
+    title GGUF Version Evolution
+    section v1
+        Initial Release : Basic structure
+    section v2  
+        Alignment : Added padding for memory mapping
+    section v3
+        Current : Big-endian support, improved compatibility</code></pre>
+<hr />
+<h2 id="section-2-metadata-key-value-pairs">Section 2: Metadata Key-Value Pairs</h2>
+<p>Immediately following the header, metadata is stored as a sequence of key-value pairs. This section contains all model configuration, architecture details, tokenizer data, and custom attributes.</p>
+<h3 id="metadata-structure-overview">Metadata Structure Overview</h3>
+<pre class="mermaid"><code>flowchart TB
+    subgraph META["METADATA SECTION"]
+        direction TB
+        KV1["Key-Value Pair 1"]
+        KV2["Key-Value Pair 2"]
+        KV3["Key-Value Pair 3"]
+        KVN["Key-Value Pair N..."]
+    end
+
+    subgraph KVPAIR["SINGLE KV PAIR STRUCTURE"]
+        direction LR
+        KL["Key Length&lt;br/&gt;uint64"]
+        KS["Key String&lt;br/&gt;UTF-8"]
+        VT["Value Type&lt;br/&gt;uint32"]
+        VD["Value Data&lt;br/&gt;variable"]
+    end
+
+    KV1 --&gt; KV2 --&gt; KV3 --&gt; KVN
+
+    style KL fill:#4299e1,stroke:#2b6cb0,color:#fff
+    style KS fill:#48bb78,stroke:#2f855a,color:#fff
+    style VT fill:#ed8936,stroke:#c05621,color:#fff
+    style VD fill:#9f7aea,stroke:#6b46c1,color:#fff</code></pre>
+<h3 id="value-types">Value Types</h3>
+<p>GGUF supports multiple data types for metadata values:</p>
+<pre class="mermaid"><code>flowchart TB
+    subgraph TYPES["GGUF VALUE TYPES"]
+        direction TB
+
+        subgraph SCALAR["SCALAR TYPES"]
+            T0["0: UINT8"]
+            T1["1: INT8"]
+            T2["2: UINT16"]
+            T3["3: INT16"]
+            T4["4: UINT32"]
+            T5["5: INT32"]
+            T6["6: FLOAT32"]
+            T7["7: BOOL"]
+            T10["10: UINT64"]
+            T11["11: INT64"]
+            T12["12: FLOAT64"]
+        end
+
+        subgraph COMPLEX["COMPLEX TYPES"]
+            T8["8: STRING&lt;br/&gt;length + UTF-8 data"]
+            T9["9: ARRAY&lt;br/&gt;type + count + elements"]
+        end
+    end
+
+    style T8 fill:#48bb78,stroke:#2f855a,color:#fff
+    style T9 fill:#ed8936,stroke:#c05621,color:#fff</code></pre>
+<h3 id="type-id-reference-table">Type ID Reference Table</h3>
+<table>
+<thead>
+<tr>
+<th>Type ID</th>
+<th>Name</th>
+<th>Size</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>UINT8</td>
+<td>1 byte</td>
+<td>Unsigned 8-bit integer</td>
+</tr>
+<tr>
+<td>1</td>
+<td>INT8</td>
+<td>1 byte</td>
+<td>Signed 8-bit integer</td>
+</tr>
+<tr>
+<td>2</td>
+<td>UINT16</td>
+<td>2 bytes</td>
+<td>Unsigned 16-bit integer</td>
+</tr>
+<tr>
+<td>3</td>
+<td>INT16</td>
+<td>2 bytes</td>
+<td>Signed 16-bit integer</td>
+</tr>
+<tr>
+<td>4</td>
+<td>UINT32</td>
+<td>4 bytes</td>
+<td>Unsigned 32-bit integer</td>
+</tr>
+<tr>
+<td>5</td>
+<td>INT32</td>
+<td>4 bytes</td>
+<td>Signed 32-bit integer</td>
+</tr>
+<tr>
+<td>6</td>
+<td>FLOAT32</td>
+<td>4 bytes</td>
+<td>32-bit floating point</td>
+</tr>
+<tr>
+<td>7</td>
+<td>BOOL</td>
+<td>1 byte</td>
+<td>Boolean (0 or 1)</td>
+</tr>
+<tr>
+<td>8</td>
+<td>STRING</td>
+<td>variable</td>
+<td>Length-prefixed UTF-8 string</td>
+</tr>
+<tr>
+<td>9</td>
+<td>ARRAY</td>
+<td>variable</td>
+<td>Homogeneous typed array</td>
+</tr>
+<tr>
+<td>10</td>
+<td>UINT64</td>
+<td>8 bytes</td>
+<td>Unsigned 64-bit integer</td>
+</tr>
+<tr>
+<td>11</td>
+<td>INT64</td>
+<td>8 bytes</td>
+<td>Signed 64-bit integer</td>
+</tr>
+<tr>
+<td>12</td>
+<td>FLOAT64</td>
+<td>8 bytes</td>
+<td>64-bit floating point</td>
+</tr>
+</tbody>
+</table>
+<h3 id="common-metadata-keys">Common Metadata Keys</h3>
+<pre class="mermaid"><code>mindmap
+  root((Metadata&lt;br/&gt;Keys))
+    General
+      general.architecture
+      general.name
+      general.author
+      general.license
+      general.quantization_version
+    Architecture
+      llama.context_length
+      llama.embedding_length
+      llama.block_count
+      llama.attention.head_count
+      llama.attention.head_count_kv
+      llama.rope.freq_base
+    Tokenizer
+      tokenizer.ggml.model
+      tokenizer.ggml.tokens
+      tokenizer.ggml.scores
+      tokenizer.ggml.token_type
+      tokenizer.ggml.bos_token_id
+      tokenizer.ggml.eos_token_id</code></pre>
+<h3 id="string-encoding-detail">String Encoding Detail</h3>
+<pre class="mermaid"><code>flowchart LR
+    subgraph STRING["STRING VALUE ENCODING"]
+        direction LR
+        SL["String Length&lt;br/&gt;uint64&lt;br/&gt;8 bytes"]
+        SD["String Data&lt;br/&gt;UTF-8 bytes&lt;br/&gt;N bytes"]
+    end
+
+    SL --&gt; SD
+
+    style SL fill:#4299e1,stroke:#2b6cb0,color:#fff
+    style SD fill:#48bb78,stroke:#2f855a,color:#fff</code></pre>
+<h3 id="array-encoding-detail">Array Encoding Detail</h3>
+<pre class="mermaid"><code>flowchart LR
+    subgraph ARRAY["ARRAY VALUE ENCODING"]
+        direction LR
+        AT["Element Type&lt;br/&gt;uint32&lt;br/&gt;4 bytes"]
+        AC["Array Count&lt;br/&gt;uint64&lt;br/&gt;8 bytes"]
+        AE["Elements&lt;br/&gt;type × count&lt;br/&gt;variable"]
+    end
+
+    AT --&gt; AC --&gt; AE
+
+    style AT fill:#ed8936,stroke:#c05621,color:#fff
+    style AC fill:#4299e1,stroke:#2b6cb0,color:#fff
+    style AE fill:#9f7aea,stroke:#6b46c1,color:#fff</code></pre>
+<hr />
+<h2 id="section-3-tensor-information">Section 3: Tensor Information</h2>
+<p>After metadata, the file contains descriptors for each tensor. These descriptors define tensor names, shapes, data types, and offsets into the data section.</p>
+<h3 id="tensor-info-structure">Tensor Info Structure</h3>
+<pre class="mermaid"><code>flowchart TB
+    subgraph TENSORS["TENSOR INFO SECTION"]
+        direction TB
+        T1["Tensor Info 1"]
+        T2["Tensor Info 2"]
+        T3["Tensor Info 3"]
+        TN["Tensor Info N..."]
+    end
+
+    subgraph TINFO["SINGLE TENSOR INFO"]
+        direction LR
+        NL["Name Length&lt;br/&gt;uint64"]
+        NS["Name String&lt;br/&gt;UTF-8"]
+        ND["N Dimensions&lt;br/&gt;uint32"]
+        DM["Dimensions&lt;br/&gt;uint64 × N"]
+        TT["Tensor Type&lt;br/&gt;uint32"]
+        OF["Data Offset&lt;br/&gt;uint64"]
+    end
+
+    T1 --&gt; T2 --&gt; T3 --&gt; TN
+
+    style NL fill:#4299e1,stroke:#2b6cb0,color:#fff
+    style NS fill:#48bb78,stroke:#2f855a,color:#fff
+    style ND fill:#ed8936,stroke:#c05621,color:#fff
+    style DM fill:#f6e05e,stroke:#d69e2e,color:#333
+    style TT fill:#fc8181,stroke:#c53030,color:#fff
+    style OF fill:#9f7aea,stroke:#6b46c1,color:#fff</code></pre>
+<h3 id="tensor-info-fields">Tensor Info Fields</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name Length</td>
+<td>uint64_t</td>
+<td>Length of tensor name in bytes</td>
+</tr>
+<tr>
+<td>Name</td>
+<td>char[]</td>
+<td>UTF-8 encoded tensor name</td>
+</tr>
+<tr>
+<td>N Dimensions</td>
+<td>uint32_t</td>
+<td>Number of dimensions (1-4 typically)</td>
+</tr>
+<tr>
+<td>Dimensions</td>
+<td>uint64_t[]</td>
+<td>Size of each dimension</td>
+</tr>
+<tr>
+<td>Type</td>
+<td>uint32_t</td>
+<td>Quantization/data type ID</td>
+</tr>
+<tr>
+<td>Offset</td>
+<td>uint64_t</td>
+<td>Byte offset from start of tensor data section</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tensorquantization-types">Tensor/Quantization Types</h3>
+<pre class="mermaid"><code>flowchart TB
+    subgraph QTYPES["TENSOR DATA TYPES"]
+        direction LR
+
+        subgraph FULL["FULL PRECISION"]
+            F32["F32&lt;br/&gt;32-bit float"]
+            F16["F16&lt;br/&gt;16-bit float"]
+            BF16["BF16&lt;br/&gt;bfloat16"]
+        end
+
+        subgraph LEGACY["LEGACY QUANT"]
+            Q4_0["Q4_0&lt;br/&gt;4-bit (32 block)"]
+            Q4_1["Q4_1&lt;br/&gt;4-bit + min"]
+            Q5_0["Q5_0&lt;br/&gt;5-bit"]
+            Q5_1["Q5_1&lt;br/&gt;5-bit + min"]
+            Q8_0["Q8_0&lt;br/&gt;8-bit"]
+        end
+
+        subgraph KQUANT["K-QUANTS"]
+            Q2_K["Q2_K&lt;br/&gt;2-bit k-quant"]
+            Q3_K["Q3_K&lt;br/&gt;3-bit k-quant"]
+            Q4_K["Q4_K&lt;br/&gt;4-bit k-quant"]
+            Q5_K["Q5_K&lt;br/&gt;5-bit k-quant"]
+            Q6_K["Q6_K&lt;br/&gt;6-bit k-quant"]
+        end
+
+        subgraph IQUANT["I-QUANTS"]
+            IQ2["IQ2_*&lt;br/&gt;2-bit importance"]
+            IQ3["IQ3_*&lt;br/&gt;3-bit importance"]
+            IQ4["IQ4_*&lt;br/&gt;4-bit importance"]
+        end
+    end
+
+    style F32 fill:#48bb78,stroke:#2f855a,color:#fff
+    style F16 fill:#4299e1,stroke:#2b6cb0,color:#fff</code></pre>
+<h3 id="quantization-type-ids">Quantization Type IDs</h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Type</th>
+<th>Bits/Weight</th>
+<th>Block Size</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>F32</td>
+<td>32</td>
+<td>1</td>
+<td>Full 32-bit float</td>
+</tr>
+<tr>
+<td>1</td>
+<td>F16</td>
+<td>16</td>
+<td>1</td>
+<td>Half precision float</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Q4_0</td>
+<td>4</td>
+<td>32</td>
+<td>4-bit quantization</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Q4_1</td>
+<td>4.5</td>
+<td>32</td>
+<td>4-bit with min value</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Q5_0</td>
+<td>5</td>
+<td>32</td>
+<td>5-bit quantization</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Q5_1</td>
+<td>5.5</td>
+<td>32</td>
+<td>5-bit with min value</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Q8_0</td>
+<td>8</td>
+<td>32</td>
+<td>8-bit quantization</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Q2_K</td>
+<td>2.5</td>
+<td>256</td>
+<td>K-quant 2-bit</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Q3_K</td>
+<td>3.4</td>
+<td>256</td>
+<td>K-quant 3-bit</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Q4_K</td>
+<td>4.5</td>
+<td>256</td>
+<td>K-quant 4-bit</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Q5_K</td>
+<td>5.5</td>
+<td>256</td>
+<td>K-quant 5-bit</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Q6_K</td>
+<td>6.5</td>
+<td>256</td>
+<td>K-quant 6-bit</td>
+</tr>
+<tr>
+<td>30</td>
+<td>BF16</td>
+<td>16</td>
+<td>1</td>
+<td>Brain float 16</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="section-4-tensor-data">Section 4: Tensor Data</h2>
+<p>The final and largest section contains the actual tensor weights. Data is aligned for efficient memory-mapped access.</p>
+<h3 id="alignment-and-padding">Alignment and Padding</h3>
+<pre class="mermaid"><code>flowchart TB
+    subgraph ALIGN["DATA ALIGNMENT"]
+        direction TB
+
+        END_META["End of Tensor Info Section"]
+        PAD["ALIGNMENT PADDING&lt;br/&gt;Padded to 32-byte boundary"]
+        DATA["TENSOR DATA START&lt;br/&gt;Aligned address"]
+
+        END_META --&gt; PAD --&gt; DATA
+    end
+
+    subgraph LAYOUT["TENSOR DATA LAYOUT"]
+        direction LR
+        T1D["Tensor 1 Data"]
+        T2D["Tensor 2 Data"]
+        T3D["Tensor 3 Data"]
+        TND["Tensor N Data..."]
+    end
+
+    DATA --&gt; LAYOUT
+    T1D --&gt; T2D --&gt; T3D --&gt; TND
+
+    style PAD fill:#fc8181,stroke:#c53030,color:#fff
+    style DATA fill:#48bb78,stroke:#2f855a,color:#fff</code></pre>
+<h3 id="data-section-properties">Data Section Properties</h3>
+<ul>
+<li><strong>Alignment</strong>: Data starts at a 32-byte aligned offset (configurable, default 32)</li>
+<li><strong>Tensor Order</strong>: Tensors are stored in the order their info appears</li>
+<li><strong>No Padding Between Tensors</strong>: Tensors are packed contiguously (type-specific alignment may apply)</li>
+<li><strong>Offsets</strong>: Each tensor's offset is relative to the start of the data section</li>
+</ul>
+<hr />
+<h2 id="complete-file-layout">Complete File Layout</h2>
+<pre class="mermaid"><code>flowchart TB
+    subgraph FILE["COMPLETE GGUF FILE BYTE LAYOUT"]
+        direction TB
+
+        subgraph H["BYTES 0-23: HEADER"]
+            H1["0x00-0x03: Magic 'GGUF'"]
+            H2["0x04-0x07: Version"]
+            H3["0x08-0x0F: Tensor Count"]
+            H4["0x10-0x17: KV Count"]
+        end
+
+        subgraph M["VARIABLE: METADATA"]
+            M1["KV Pair 1"]
+            M2["KV Pair 2"]
+            M3["..."]
+            MN["KV Pair N"]
+        end
+
+        subgraph T["VARIABLE: TENSOR INFOS"]
+            T1["Tensor Info 1"]
+            T2["Tensor Info 2"]
+            T3["..."]
+            TN["Tensor Info N"]
+        end
+
+        subgraph P["PADDING"]
+            P1["Alignment Padding&lt;br/&gt;to 32-byte boundary"]
+        end
+
+        subgraph D["BULK: TENSOR DATA"]
+            D1["Tensor 1 Weights"]
+            D2["Tensor 2 Weights"]
+            D3["..."]
+            DN["Tensor N Weights"]
+        end
+    end
+
+    H --&gt; M --&gt; T --&gt; P --&gt; D
+
+    style H fill:#4a90d9,stroke:#2c5282,color:#fff
+    style M fill:#48bb78,stroke:#276749,color:#fff
+    style T fill:#ed8936,stroke:#c05621,color:#fff
+    style P fill:#a0aec0,stroke:#718096,color:#fff
+    style D fill:#9f7aea,stroke:#6b46c1,color:#fff</code></pre>
+<hr />
+<h2 id="memory-mapping">Memory Mapping</h2>
+<p>GGUF is designed for efficient memory-mapped loading:</p>
+<pre class="mermaid"><code>flowchart LR
+    subgraph DISK["DISK FILE"]
+        DF["GGUF File"]
+    end
+
+    subgraph MMAP["MEMORY MAP"]
+        VM["Virtual Memory&lt;br/&gt;Pages"]
+    end
+
+    subgraph RAM["PHYSICAL RAM"]
+        PM["Loaded Pages&lt;br/&gt;On Demand"]
+    end
+
+    DF --&gt;|"mmap()"| VM
+    VM --&gt;|"Page Fault"| PM
+
+    style DF fill:#4299e1,stroke:#2b6cb0,color:#fff
+    style VM fill:#ed8936,stroke:#c05621,color:#fff
+    style PM fill:#48bb78,stroke:#2f855a,color:#fff</code></pre>
+<h3 id="benefits-of-memory-mapping">Benefits of Memory Mapping</h3>
+<ol>
+<li><strong>Fast Load Times</strong>: Only metadata is read initially</li>
+<li><strong>On-Demand Loading</strong>: Tensor pages loaded only when accessed</li>
+<li><strong>Shared Memory</strong>: Multiple processes can share the same mapped file</li>
+<li><strong>Low Memory Overhead</strong>: No need to copy data from disk buffer</li>
+</ol>
+<hr />
+<h2 id="typical-model-architecture-in-gguf">Typical Model Architecture in GGUF</h2>
+<pre class="mermaid"><code>flowchart TB
+    subgraph MODEL["TRANSFORMER MODEL TENSORS"]
+        direction TB
+
+        subgraph EMB["EMBEDDINGS"]
+            TE["token_embd.weight"]
+        end
+
+        subgraph BLOCKS["TRANSFORMER BLOCKS × N"]
+            subgraph ATTN["ATTENTION"]
+                QW["blk.N.attn_q.weight"]
+                KW["blk.N.attn_k.weight"]
+                VW["blk.N.attn_v.weight"]
+                OW["blk.N.attn_output.weight"]
+            end
+
+            subgraph FFN["FEED FORWARD"]
+                G["blk.N.ffn_gate.weight"]
+                U["blk.N.ffn_up.weight"]
+                D["blk.N.ffn_down.weight"]
+            end
+
+            subgraph NORM["LAYER NORMS"]
+                AN["blk.N.attn_norm.weight"]
+                FN["blk.N.ffn_norm.weight"]
+            end
+        end
+
+        subgraph OUT["OUTPUT"]
+            ON["output_norm.weight"]
+            OL["output.weight"]
+        end
+    end
+
+    EMB --&gt; BLOCKS --&gt; OUT
+
+    style TE fill:#4299e1,stroke:#2b6cb0,color:#fff
+    style OL fill:#48bb78,stroke:#2f855a,color:#fff</code></pre>
+<hr />
+<h2 id="reading-gguf-in-python">Reading GGUF in Python</h2>
+<p>Here's a minimal example for reading GGUF headers on Windows (CPU only):</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">struct</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">read_gguf_header</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Read GGUF file header information.&quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="c1"># Read magic</span>
+        <span class="n">magic</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">magic</span> <span class="o">!=</span> <span class="sa">b</span><span class="s1">&#39;GGUF&#39;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid GGUF magic: </span><span class="si">{</span><span class="n">magic</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Read version (uint32, little-endian)</span>
+        <span class="n">version</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s1">&#39;&lt;I&#39;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">4</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="c1"># Read tensor count (uint64, little-endian)</span>
+        <span class="n">tensor_count</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s1">&#39;&lt;Q&#39;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">8</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="c1"># Read metadata kv count (uint64, little-endian)</span>
+        <span class="n">metadata_kv_count</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s1">&#39;&lt;Q&#39;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">8</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">&#39;magic&#39;</span><span class="p">:</span> <span class="n">magic</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">),</span>
+            <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="n">version</span><span class="p">,</span>
+            <span class="s1">&#39;tensor_count&#39;</span><span class="p">:</span> <span class="n">tensor_count</span><span class="p">,</span>
+            <span class="s1">&#39;metadata_kv_count&#39;</span><span class="p">:</span> <span class="n">metadata_kv_count</span>
+        <span class="p">}</span>
+
+<span class="c1"># Usage</span>
+<span class="c1"># header = read_gguf_header(&quot;model.gguf&quot;)</span>
+<span class="c1"># print(header)</span>
+</code></pre></div>
+<hr />
+<h2 id="tools-for-working-with-gguf">Tools for Working with GGUF</h2>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Purpose</th>
+<th>Platform</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>llama.cpp</code></td>
+<td>Inference engine</td>
+<td>Windows/Linux/Mac</td>
+</tr>
+<tr>
+<td><code>gguf-py</code></td>
+<td>Python GGUF library</td>
+<td>Cross-platform</td>
+</tr>
+<tr>
+<td><code>llama-quantize</code></td>
+<td>Quantization tool</td>
+<td>Windows/Linux/Mac</td>
+</tr>
+<tr>
+<td><code>llama-gguf</code></td>
+<td>GGUF manipulation</td>
+<td>Windows/Linux/Mac</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="summary">Summary</h2>
+<pre class="mermaid"><code>flowchart TB
+    subgraph SUMMARY["GGUF FORMAT SUMMARY"]
+        direction LR
+
+        S1["🔒 Self-Contained&lt;br/&gt;Single file distribution"]
+        S2["⚡ Memory Mapped&lt;br/&gt;Fast loading"]
+        S3["📊 Quantized&lt;br/&gt;Reduced size"]
+        S4["📋 Metadata Rich&lt;br/&gt;Complete model info"]
+    end
+
+    style S1 fill:#4299e1,stroke:#2b6cb0,color:#fff
+    style S2 fill:#48bb78,stroke:#2f855a,color:#fff
+    style S3 fill:#ed8936,stroke:#c05621,color:#fff
+    style S4 fill:#9f7aea,stroke:#6b46c1,color:#fff</code></pre>
+<p><strong>Key Takeaways:</strong></p>
+<ol>
+<li><strong>Header (24 bytes)</strong>: Magic number, version, counts</li>
+<li><strong>Metadata</strong>: Key-value pairs for model configuration and tokenizer</li>
+<li><strong>Tensor Info</strong>: Names, dimensions, types, and offsets for each tensor</li>
+<li><strong>Tensor Data</strong>: Aligned, quantized weight data</li>
+</ol>
+<p>GGUF enables efficient distribution and inference of large language models on consumer hardware, including CPU-only systems like your Lenovo Yoga with 32GB RAM.</p>
+<hr />
+<p><em>Guide generated for GGUF format version 3</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.indexes", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../js/external-links.js"></script>
+      
+    
+  </body>
+</html>
