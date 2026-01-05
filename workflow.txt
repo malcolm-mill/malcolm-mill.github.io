@@ -1,0 +1,11 @@
+git checkout main
+git pull
+
+# edit docs/*
+mkdocs serve
+
+git add .
+git commit -m "Update docs"
+git push
+
+mkdocs gh-deploy
