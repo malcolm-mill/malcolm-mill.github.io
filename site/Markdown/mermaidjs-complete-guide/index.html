@@ -1,0 +1,2211 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://malcolm-mill.github.io/Markdown/mermaidjs-complete-guide/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>MermaidJS Complete Diagram Guide - Malcolm Mill</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mermaidjs-complete-diagram-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Malcolm Mill" class="md-header__button md-logo" aria-label="Malcolm Mill" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Malcolm Mill
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              MermaidJS Complete Diagram Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Malcolm Mill" class="md-nav__button md-logo" aria-label="Malcolm Mill" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Malcolm Mill
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-flowchart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Flowchart
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Flowchart">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#directions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Directions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#node-shapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Node Shapes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linkedge-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Link/Edge Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#link-length" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Link Length
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subgraphs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subgraphs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#styling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Styling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complete-flowchart-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complete Flowchart Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-sequence-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Sequence Diagram
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Sequence Diagram">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#participants-and-actors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Participants and Actors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#message-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Message Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Activations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loops-alt-opt-par-critical-break" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Loops, Alt, Opt, Par, Critical, Break
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boxes-grouping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boxes (Grouping)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#autonumbering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Autonumbering
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-class-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Class Diagram
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Class Diagram">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-class-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Class Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#visibility-modifiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Visibility Modifiers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relationships" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relationships
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cardinality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cardinality
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#class-annotations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Class Annotations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complete-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complete Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#namespaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Namespaces
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-state-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. State Diagram
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. State Diagram">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic States
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#composite-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Composite States
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fork-and-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fork and Join
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#choice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choice
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#concurrency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concurrency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#direction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Direction
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-entity-relationship-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Entity Relationship Diagram
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Entity Relationship Diagram">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#relationship-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relationship Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cardinality-notation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cardinality Notation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entity-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entity Attributes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attribute-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Attribute Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-user-journey" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. User Journey
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. User Journey">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#score-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Score Values
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-gantt-chart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Gantt Chart
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Gantt Chart">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-gantt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Gantt
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sections-and-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sections and Dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-pie-chart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Pie Chart
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-quadrant-chart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Quadrant Chart
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-requirement-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Requirement Diagram
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Requirement Diagram">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#relationship-types_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relationship Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-gitgraph-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Gitgraph Diagram
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Gitgraph Diagram">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#customization-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Customization Options
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cherry-pick" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cherry-pick
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-mindmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Mindmap
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Mindmap">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#node-shapes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Node Shapes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#icons-and-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Icons and Classes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-timeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Timeline
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-sankey-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Sankey Diagram
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-xy-chart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. XY Chart
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15. XY Chart">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bar-chart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bar Chart
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#line-chart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Line Chart
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#combined-bar-and-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Combined Bar and Line
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-block-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Block Diagram
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="16. Block Diagram">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#block-shapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Block Shapes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-packet-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. Packet Diagram
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-architecture-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18. Architecture Diagram
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19-kanban-board" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19. Kanban Board
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#theming-and-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theming and Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Theming and Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#built-in-themes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Built-in Themes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-theme-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Theme Variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#directives-and-comments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Directives and Comments
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Directives and Comments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#directives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Directives
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#accessibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Accessibility
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tips-and-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tips and Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resources
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="mermaidjs-complete-diagram-guide">MermaidJS Complete Diagram Guide</h1>
+<p>Mermaid is a JavaScript-based diagramming and charting tool that uses text definitions to create diagrams dynamically. This guide covers every diagram type and element available in MermaidJS.</p>
+<hr />
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#1-flowchart">Flowchart</a></li>
+<li><a href="#2-sequence-diagram">Sequence Diagram</a></li>
+<li><a href="#3-class-diagram">Class Diagram</a></li>
+<li><a href="#4-state-diagram">State Diagram</a></li>
+<li><a href="#5-entity-relationship-diagram">Entity Relationship Diagram</a></li>
+<li><a href="#6-user-journey">User Journey</a></li>
+<li><a href="#7-gantt-chart">Gantt Chart</a></li>
+<li><a href="#8-pie-chart">Pie Chart</a></li>
+<li><a href="#9-quadrant-chart">Quadrant Chart</a></li>
+<li><a href="#10-requirement-diagram">Requirement Diagram</a></li>
+<li><a href="#11-gitgraph-diagram">Gitgraph Diagram</a></li>
+<li><a href="#12-mindmap">Mindmap</a></li>
+<li><a href="#13-timeline">Timeline</a></li>
+<li><a href="#14-sankey-diagram">Sankey Diagram</a></li>
+<li><a href="#15-xy-chart">XY Chart</a></li>
+<li><a href="#16-block-diagram">Block Diagram</a></li>
+<li><a href="#17-packet-diagram">Packet Diagram</a></li>
+<li><a href="#18-architecture-diagram">Architecture Diagram</a></li>
+<li><a href="#19-kanban-board">Kanban Board</a></li>
+</ol>
+<hr />
+<h2 id="1-flowchart">1. Flowchart</h2>
+<p>Flowcharts are composed of nodes and edges. They support various shapes, link styles, and directions.</p>
+<h3 id="directions">Directions</h3>
+<ul>
+<li><code>TB</code> / <code>TD</code> - Top to Bottom</li>
+<li><code>BT</code> - Bottom to Top</li>
+<li><code>LR</code> - Left to Right</li>
+<li><code>RL</code> - Right to Left</li>
+</ul>
+<h3 id="node-shapes">Node Shapes</h3>
+<pre class="mermaid"><code>flowchart LR
+    A[Rectangle] --&gt; B(Rounded Rectangle)
+    B --&gt; C([Stadium])
+    C --&gt; D[[Subroutine]]
+    D --&gt; E[(Database)]
+    E --&gt; F((Circle))</code></pre>
+<pre class="mermaid"><code>flowchart LR
+    G&gt;Asymmetric] --&gt; H{Diamond}
+    H --&gt; I{{Hexagon}}
+    I --&gt; J[/Parallelogram/]
+    J --&gt; K[\Parallelogram Alt\]
+    K --&gt; L[/Trapezoid\]</code></pre>
+<pre class="mermaid"><code>flowchart LR
+    M[\Trapezoid Alt/] --&gt; N(((Double Circle)))</code></pre>
+<h3 id="linkedge-types">Link/Edge Types</h3>
+<pre class="mermaid"><code>flowchart LR
+    A --&gt; B
+    A --- C
+    A -.- D
+    A -.-&gt; E
+    A ==&gt; F
+    A ~~~ G
+
+    H -- text --&gt; I
+    J -. text .-&gt; K
+    L == text ==&gt; M</code></pre>
+<h3 id="link-length">Link Length</h3>
+<pre class="mermaid"><code>flowchart TD
+    A ---&gt; B
+    A ----&gt; C
+    A -----&gt; D</code></pre>
+<h3 id="subgraphs">Subgraphs</h3>
+<pre class="mermaid"><code>flowchart TB
+    subgraph one [First Subgraph]
+        A1 --&gt; A2
+    end
+    subgraph two [Second Subgraph]
+        B1 --&gt; B2
+    end
+    subgraph three [Third Subgraph]
+        C1 --&gt; C2
+    end
+    one --&gt; two
+    three --&gt; two
+    two --&gt; C2</code></pre>
+<h3 id="styling">Styling</h3>
+<pre class="mermaid"><code>flowchart LR
+    A:::someclass --&gt; B
+    classDef someclass fill:#f96,stroke:#333,stroke-width:2px
+
+    C --&gt; D
+    style D fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5</code></pre>
+<h3 id="complete-flowchart-example">Complete Flowchart Example</h3>
+<pre class="mermaid"><code>flowchart TD
+    Start([Start]) --&gt; Input[/Get User Input/]
+    Input --&gt; Validate{Is Valid?}
+    Validate --&gt;|Yes| Process[Process Data]
+    Validate --&gt;|No| Error[Show Error]
+    Error --&gt; Input
+    Process --&gt; Database[(Save to DB)]
+    Database --&gt; Output[\Display Results\]
+    Output --&gt; End([End])
+
+    style Start fill:#9f9,stroke:#333
+    style End fill:#f99,stroke:#333</code></pre>
+<hr />
+<h2 id="2-sequence-diagram">2. Sequence Diagram</h2>
+<p>Sequence diagrams show how processes interact with each other and in what order.</p>
+<h3 id="participants-and-actors">Participants and Actors</h3>
+<pre class="mermaid"><code>sequenceDiagram
+    participant A as Alice
+    actor B as Bob
+    participant C as Charlie
+
+    A-&gt;&gt;B: Hello Bob!
+    B-&gt;&gt;C: Hi Charlie!
+    C-&gt;&gt;A: Hey Alice!</code></pre>
+<h3 id="message-types">Message Types</h3>
+<pre class="mermaid"><code>sequenceDiagram
+    participant A
+    participant B
+
+    A-&gt;B: Solid line without arrow
+    A--&gt;B: Dotted line without arrow
+    A-&gt;&gt;B: Solid line with arrowhead
+    A--&gt;&gt;B: Dotted line with arrowhead
+    A-xB: Solid line with cross
+    A--xB: Dotted line with cross
+    A-)B: Solid line with open arrow (async)
+    A--)B: Dotted line with open arrow (async)</code></pre>
+<h3 id="activations">Activations</h3>
+<pre class="mermaid"><code>sequenceDiagram
+    participant Client
+    participant Server
+
+    Client-&gt;&gt;+Server: Request
+    Server-&gt;&gt;+Server: Process
+    Server--&gt;&gt;-Server: Done
+    Server--&gt;&gt;-Client: Response</code></pre>
+<h3 id="notes">Notes</h3>
+<pre class="mermaid"><code>sequenceDiagram
+    participant A
+    participant B
+
+    Note left of A: Note on left
+    Note right of B: Note on right
+    Note over A: Note over A
+    Note over A,B: Note spanning both
+
+    A-&gt;&gt;B: Message</code></pre>
+<h3 id="loops-alt-opt-par-critical-break">Loops, Alt, Opt, Par, Critical, Break</h3>
+<pre class="mermaid"><code>sequenceDiagram
+    participant User
+    participant System
+
+    User-&gt;&gt;System: Login Request
+
+    alt Valid Credentials
+        System-&gt;&gt;User: Login Success
+    else Invalid Credentials
+        System-&gt;&gt;User: Login Failed
+    end
+
+    opt Remember Me
+        System-&gt;&gt;System: Store Session
+    end
+
+    loop Health Check
+        System-&gt;&gt;System: Check Status
+    end
+
+    par Parallel Task A
+        System-&gt;&gt;System: Task A
+    and Parallel Task B
+        System-&gt;&gt;System: Task B
+    end
+
+    critical Establish Connection
+        System-&gt;&gt;System: Connect
+    option Connection Timeout
+        System-&gt;&gt;User: Retry
+    end
+
+    break Something Went Wrong
+        System-&gt;&gt;User: Error Response
+    end</code></pre>
+<h3 id="boxes-grouping">Boxes (Grouping)</h3>
+<pre class="mermaid"><code>sequenceDiagram
+    box Purple Client Side
+        participant Browser
+        participant App
+    end
+    box Green Server Side
+        participant API
+        participant Database
+    end
+
+    Browser-&gt;&gt;App: User Action
+    App-&gt;&gt;API: API Request
+    API-&gt;&gt;Database: Query
+    Database--&gt;&gt;API: Results
+    API--&gt;&gt;App: Response
+    App--&gt;&gt;Browser: Update UI</code></pre>
+<h3 id="autonumbering">Autonumbering</h3>
+<pre class="mermaid"><code>sequenceDiagram
+    autonumber
+    Alice-&gt;&gt;John: Hello John
+    John--&gt;&gt;Alice: Hi Alice
+    Alice-&gt;&gt;John: How are you?
+    John--&gt;&gt;Alice: I'm good!</code></pre>
+<hr />
+<h2 id="3-class-diagram">3. Class Diagram</h2>
+<p>Class diagrams are used in object-oriented modeling to describe the structure of a system.</p>
+<h3 id="basic-class-definition">Basic Class Definition</h3>
+<pre class="mermaid"><code>classDiagram
+    class Animal {
+        +String name
+        +int age
+        +makeSound() void
+        +move() void
+    }</code></pre>
+<h3 id="visibility-modifiers">Visibility Modifiers</h3>
+<pre class="mermaid"><code>classDiagram
+    class Example {
+        +publicAttribute
+        -privateAttribute
+        #protectedAttribute
+        ~packageAttribute
+        +publicMethod()
+        -privateMethod()
+        #protectedMethod()
+        ~packageMethod()
+    }</code></pre>
+<h3 id="relationships">Relationships</h3>
+<pre class="mermaid"><code>classDiagram
+    classA &lt;|-- classB : Inheritance
+    classC *-- classD : Composition
+    classE o-- classF : Aggregation
+    classG &lt;-- classH : Association
+    classI -- classJ : Link (Solid)
+    classK &lt;.. classL : Dependency
+    classM &lt;|.. classN : Realization
+    classO .. classP : Link (Dashed)</code></pre>
+<h3 id="cardinality">Cardinality</h3>
+<pre class="mermaid"><code>classDiagram
+    Customer "1" --&gt; "*" Order : places
+    Order "1" --&gt; "1..*" LineItem : contains
+    Product "1" --&gt; "0..*" LineItem : appears in</code></pre>
+<h3 id="class-annotations">Class Annotations</h3>
+<pre class="mermaid"><code>classDiagram
+    class Shape {
+        &lt;&lt;interface&gt;&gt;
+        +draw()
+        +area() double
+    }
+
+    class AbstractShape {
+        &lt;&lt;abstract&gt;&gt;
+        #color: String
+        +getColor() String
+    }
+
+    class ShapeService {
+        &lt;&lt;service&gt;&gt;
+        +createShape() Shape
+    }
+
+    class ShapeType {
+        &lt;&lt;enumeration&gt;&gt;
+        CIRCLE
+        SQUARE
+        TRIANGLE
+    }</code></pre>
+<h3 id="complete-example">Complete Example</h3>
+<pre class="mermaid"><code>classDiagram
+    class Animal {
+        &lt;&lt;abstract&gt;&gt;
+        +String name
+        +int age
+        +makeSound()* void
+        +move() void
+    }
+
+    class Dog {
+        +String breed
+        +makeSound() void
+        +fetch() void
+    }
+
+    class Cat {
+        +boolean indoor
+        +makeSound() void
+        +scratch() void
+    }
+
+    class Pet {
+        &lt;&lt;interface&gt;&gt;
+        +play() void
+        +feed() void
+    }
+
+    Animal &lt;|-- Dog
+    Animal &lt;|-- Cat
+    Pet &lt;|.. Dog
+    Pet &lt;|.. Cat</code></pre>
+<h3 id="namespaces">Namespaces</h3>
+<pre class="mermaid"><code>classDiagram
+    namespace Animals {
+        class Dog
+        class Cat
+    }
+    namespace Vehicles {
+        class Car
+        class Bike
+    }</code></pre>
+<hr />
+<h2 id="4-state-diagram">4. State Diagram</h2>
+<p>State diagrams describe the behavior of a system, showing states and transitions.</p>
+<h3 id="basic-states">Basic States</h3>
+<pre class="mermaid"><code>stateDiagram-v2
+    [*] --&gt; Idle
+    Idle --&gt; Processing : Start
+    Processing --&gt; Completed : Finish
+    Completed --&gt; [*]</code></pre>
+<h3 id="composite-states">Composite States</h3>
+<pre class="mermaid"><code>stateDiagram-v2
+    [*] --&gt; Active
+
+    state Active {
+        [*] --&gt; Idle
+        Idle --&gt; Running : start
+        Running --&gt; Idle : stop
+        Running --&gt; Running : process
+    }
+
+    Active --&gt; Inactive : deactivate
+    Inactive --&gt; Active : activate
+    Inactive --&gt; [*]</code></pre>
+<h3 id="fork-and-join">Fork and Join</h3>
+<pre class="mermaid"><code>stateDiagram-v2
+    state fork_state &lt;&lt;fork&gt;&gt;
+    state join_state &lt;&lt;join&gt;&gt;
+
+    [*] --&gt; fork_state
+    fork_state --&gt; State1
+    fork_state --&gt; State2
+    fork_state --&gt; State3
+
+    State1 --&gt; join_state
+    State2 --&gt; join_state
+    State3 --&gt; join_state
+
+    join_state --&gt; FinalState
+    FinalState --&gt; [*]</code></pre>
+<h3 id="choice">Choice</h3>
+<pre class="mermaid"><code>stateDiagram-v2
+    state check_result &lt;&lt;choice&gt;&gt;
+
+    [*] --&gt; Processing
+    Processing --&gt; check_result
+    check_result --&gt; Success : if valid
+    check_result --&gt; Failure : if invalid
+    Success --&gt; [*]
+    Failure --&gt; [*]</code></pre>
+<h3 id="notes_1">Notes</h3>
+<pre class="mermaid"><code>stateDiagram-v2
+    [*] --&gt; Active
+    Active --&gt; Inactive
+
+    note right of Active
+        This is an active state
+        It can process events
+    end note
+
+    note left of Inactive : This is inactive</code></pre>
+<h3 id="concurrency">Concurrency</h3>
+<pre class="mermaid"><code>stateDiagram-v2
+    [*] --&gt; Active
+
+    state Active {
+        [*] --&gt; ProcessA
+        --
+        [*] --&gt; ProcessB
+        --
+        [*] --&gt; ProcessC
+    }
+
+    Active --&gt; [*]</code></pre>
+<h3 id="direction">Direction</h3>
+<pre class="mermaid"><code>stateDiagram-v2
+    direction LR
+    [*] --&gt; A
+    A --&gt; B
+    B --&gt; C
+    C --&gt; [*]</code></pre>
+<hr />
+<h2 id="5-entity-relationship-diagram">5. Entity Relationship Diagram</h2>
+<p>ER diagrams show relationships between entities in a database.</p>
+<h3 id="relationship-types">Relationship Types</h3>
+<pre class="mermaid"><code>erDiagram
+    CUSTOMER ||--o{ ORDER : places
+    ORDER ||--|{ LINE-ITEM : contains
+    CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
+    PRODUCT ||--o{ LINE-ITEM : "ordered in"</code></pre>
+<h3 id="cardinality-notation">Cardinality Notation</h3>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>\|o</code></td>
+<td>Zero or one</td>
+</tr>
+<tr>
+<td><code>\|\|</code></td>
+<td>Exactly one</td>
+</tr>
+<tr>
+<td><code>}o</code></td>
+<td>Zero or more</td>
+</tr>
+<tr>
+<td><code>}\|</code></td>
+<td>One or more</td>
+</tr>
+</tbody>
+</table>
+<h3 id="entity-attributes">Entity Attributes</h3>
+<pre class="mermaid"><code>erDiagram
+    CUSTOMER {
+        int id PK
+        string name
+        string email UK
+        date created_at
+    }
+
+    ORDER {
+        int id PK
+        int customer_id FK
+        date order_date
+        decimal total
+    }
+
+    PRODUCT {
+        int id PK
+        string name
+        decimal price
+        string description
+    }
+
+    LINE_ITEM {
+        int id PK
+        int order_id FK
+        int product_id FK
+        int quantity
+    }
+
+    CUSTOMER ||--o{ ORDER : places
+    ORDER ||--|{ LINE_ITEM : contains
+    PRODUCT ||--o{ LINE_ITEM : included_in</code></pre>
+<h3 id="attribute-types">Attribute Types</h3>
+<pre class="mermaid"><code>erDiagram
+    ENTITY {
+        type attribute_name PK "Primary Key"
+        type attribute_name FK "Foreign Key"
+        type attribute_name UK "Unique Key"
+    }</code></pre>
+<hr />
+<h2 id="6-user-journey">6. User Journey</h2>
+<p>User journey diagrams describe the steps a user takes to complete a task.</p>
+<pre class="mermaid"><code>journey
+    title My Working Day
+    section Morning
+        Wake up: 1: Me
+        Breakfast: 3: Me
+        Commute: 2: Me, Bus
+    section Work
+        Check emails: 3: Me
+        Meeting: 2: Me, Colleagues
+        Lunch: 5: Me
+        Coding: 4: Me
+    section Evening
+        Commute home: 2: Me, Bus
+        Dinner: 5: Me, Family
+        Sleep: 5: Me</code></pre>
+<h3 id="score-values">Score Values</h3>
+<p>Scores range from 1 to 5:
+- 1: Very negative experience
+- 2: Negative experience
+- 3: Neutral experience
+- 4: Positive experience
+- 5: Very positive experience</p>
+<hr />
+<h2 id="7-gantt-chart">7. Gantt Chart</h2>
+<p>Gantt charts illustrate project schedules.</p>
+<h3 id="basic-gantt">Basic Gantt</h3>
+<pre class="mermaid"><code>gantt
+    title Project Timeline
+    dateFormat YYYY-MM-DD
+
+    section Planning
+        Requirements    :a1, 2024-01-01, 7d
+        Design          :a2, after a1, 5d
+
+    section Development
+        Backend         :b1, after a2, 14d
+        Frontend        :b2, after a2, 14d
+        Integration     :b3, after b1, 5d
+
+    section Testing
+        Unit Tests      :c1, after b3, 7d
+        QA Testing      :c2, after c1, 7d</code></pre>
+<h3 id="task-types">Task Types</h3>
+<pre class="mermaid"><code>gantt
+    title Task Types Example
+    dateFormat YYYY-MM-DD
+
+    section Tasks
+        Normal task         :a1, 2024-01-01, 3d
+        Critical task       :crit, a2, after a1, 2d
+        Done task           :done, a3, after a2, 2d
+        Active task         :active, a4, after a3, 3d
+        Milestone           :milestone, m1, after a4, 0d</code></pre>
+<h3 id="sections-and-dependencies">Sections and Dependencies</h3>
+<pre class="mermaid"><code>gantt
+    title Software Development Lifecycle
+    dateFormat YYYY-MM-DD
+    excludes weekends
+
+    section Analysis
+        Gather Requirements     :done, req, 2024-01-01, 5d
+        Analyze Requirements    :done, ana, after req, 3d
+
+    section Design
+        System Design           :active, des, after ana, 5d
+        UI/UX Design            :uix, after ana, 7d
+
+    section Implementation
+        Core Development        :dev, after des, 15d
+        API Development         :api, after des, 10d
+
+    section Testing
+        Testing                 :test, after dev, 10d
+
+    section Deployment
+        Deployment              :milestone, dep, after test, 0d</code></pre>
+<hr />
+<h2 id="8-pie-chart">8. Pie Chart</h2>
+<pre class="mermaid"><code>pie showData
+    title Browser Market Share
+    "Chrome" : 65
+    "Safari" : 19
+    "Firefox" : 4
+    "Edge" : 4
+    "Other" : 8</code></pre>
+<pre class="mermaid"><code>pie
+    title Project Budget Allocation
+    "Development" : 45
+    "Marketing" : 20
+    "Operations" : 15
+    "Support" : 12
+    "R&amp;D" : 8</code></pre>
+<hr />
+<h2 id="9-quadrant-chart">9. Quadrant Chart</h2>
+<p>Quadrant charts plot items on a 2x2 grid for prioritization or classification.</p>
+<pre class="mermaid"><code>quadrantChart
+    title Product Feature Prioritization
+    x-axis Low Effort --&gt; High Effort
+    y-axis Low Impact --&gt; High Impact
+    quadrant-1 Plan
+    quadrant-2 Do First
+    quadrant-3 Delegate
+    quadrant-4 Eliminate
+
+    Feature A: [0.8, 0.9]
+    Feature B: [0.3, 0.8]
+    Feature C: [0.7, 0.3]
+    Feature D: [0.2, 0.2]
+    Feature E: [0.5, 0.5]
+    Feature F: [0.9, 0.7]</code></pre>
+<pre class="mermaid"><code>quadrantChart
+    title Skill Assessment
+    x-axis Low Competence --&gt; High Competence
+    y-axis Low Interest --&gt; High Interest
+    quadrant-1 Develop
+    quadrant-2 Leverage
+    quadrant-3 Ignore
+    quadrant-4 Delegate
+
+    Python: [0.9, 0.8]
+    JavaScript: [0.7, 0.7]
+    Rust: [0.3, 0.9]
+    Java: [0.6, 0.3]
+    Go: [0.4, 0.6]</code></pre>
+<hr />
+<h2 id="10-requirement-diagram">10. Requirement Diagram</h2>
+<p>Requirement diagrams show requirements and their relationships.</p>
+<pre class="mermaid"><code>requirementDiagram
+    requirement user_auth {
+        id: REQ-001
+        text: The system shall authenticate users
+        risk: high
+        verifymethod: test
+    }
+
+    requirement password_policy {
+        id: REQ-002
+        text: Passwords must be at least 8 characters
+        risk: medium
+        verifymethod: inspection
+    }
+
+    requirement session_mgmt {
+        id: REQ-003
+        text: Sessions shall expire after 30 minutes
+        risk: low
+        verifymethod: demonstration
+    }
+
+    element auth_module {
+        type: module
+        docRef: auth_design_doc
+    }
+
+    element login_test {
+        type: testCase
+        docRef: test_plan_001
+    }
+
+    user_auth - derives -&gt; password_policy
+    user_auth - derives -&gt; session_mgmt
+    auth_module - satisfies -&gt; user_auth
+    login_test - verifies -&gt; user_auth</code></pre>
+<h3 id="relationship-types_1">Relationship Types</h3>
+<ul>
+<li><code>contains</code> - Requirement contains another requirement</li>
+<li><code>copies</code> - Requirement is a copy of another</li>
+<li><code>derives</code> - Requirement derives from another</li>
+<li><code>satisfies</code> - Element satisfies requirement</li>
+<li><code>verifies</code> - Element verifies requirement</li>
+<li><code>refines</code> - Requirement refines another</li>
+<li><code>traces</code> - Requirement traces to another</li>
+</ul>
+<hr />
+<h2 id="11-gitgraph-diagram">11. Gitgraph Diagram</h2>
+<p>Gitgraph diagrams visualize git branching and merging.</p>
+<pre class="mermaid"><code>gitGraph
+    commit id: "Initial"
+    commit id: "Add README"
+    branch develop
+    checkout develop
+    commit id: "Setup project"
+    commit id: "Add core features"
+    branch feature/auth
+    checkout feature/auth
+    commit id: "Add login"
+    commit id: "Add logout"
+    checkout develop
+    merge feature/auth
+    branch feature/dashboard
+    checkout feature/dashboard
+    commit id: "Create dashboard"
+    commit id: "Add widgets"
+    checkout develop
+    merge feature/dashboard
+    checkout main
+    merge develop tag: "v1.0.0"
+    commit id: "Hotfix"</code></pre>
+<h3 id="customization-options">Customization Options</h3>
+<pre class="mermaid"><code>%%{init: { 'gitGraph': {'showBranches': true, 'showCommitLabel':true,'mainBranchName': 'production'}} }%%
+gitGraph
+    commit id: "1"
+    commit id: "2"
+    branch staging
+    checkout staging
+    commit id: "3"
+    checkout production
+    merge staging
+    commit id: "4"</code></pre>
+<h3 id="cherry-pick">Cherry-pick</h3>
+<pre class="mermaid"><code>gitGraph
+    commit id: "A"
+    commit id: "B"
+    branch develop
+    commit id: "C"
+    commit id: "D"
+    checkout main
+    cherry-pick id: "C"
+    commit id: "E"</code></pre>
+<hr />
+<h2 id="12-mindmap">12. Mindmap</h2>
+<p>Mindmaps visualize hierarchical information.</p>
+<pre class="mermaid"><code>mindmap
+    root((Project Planning))
+        Research
+            Market Analysis
+            Competitor Review
+            User Surveys
+        Design
+            Wireframes
+            Mockups
+            Prototypes
+        Development
+            Frontend
+                React
+                CSS
+                TypeScript
+            Backend
+                Node.js
+                Database
+                API
+        Testing
+            Unit Tests
+            Integration Tests
+            E2E Tests
+        Deployment
+            CI/CD
+            Monitoring
+            Scaling</code></pre>
+<h3 id="node-shapes_1">Node Shapes</h3>
+<pre class="mermaid"><code>mindmap
+    root)Cloud Shape(
+        (Rounded Square)
+            [Square]
+                {{Hexagon}}
+        ))Bang((
+            Default Text</code></pre>
+<h3 id="icons-and-classes">Icons and Classes</h3>
+<pre class="mermaid"><code>mindmap
+    root((Central Topic))
+        ::icon(fa fa-book)
+        Topic A
+            Subtopic A1
+            Subtopic A2
+        Topic B
+            ::icon(fa fa-code)
+            Subtopic B1
+        Topic C</code></pre>
+<hr />
+<h2 id="13-timeline">13. Timeline</h2>
+<p>Timeline diagrams show events over time.</p>
+<pre class="mermaid"><code>timeline
+    title History of Web Development
+
+    section 1990s
+        1991 : First website created
+        1993 : HTML 1.0
+        1995 : JavaScript created
+             : PHP released
+        1996 : CSS 1.0
+        1998 : Google founded
+
+    section 2000s
+        2004 : Facebook launched
+        2005 : YouTube launched
+             : AJAX popularized
+        2006 : jQuery released
+        2008 : HTML5 draft
+
+    section 2010s
+        2010 : AngularJS
+        2013 : React released
+        2014 : Vue.js released
+        2015 : ES6/ES2015
+
+    section 2020s
+        2020 : Remote work boom
+        2022 : ChatGPT launched
+        2023 : AI integration</code></pre>
+<hr />
+<h2 id="14-sankey-diagram">14. Sankey Diagram</h2>
+<p>Sankey diagrams visualize flow quantities between nodes.</p>
+<pre class="mermaid"><code>sankey-beta
+
+%% source, target, value
+Electricity,Residential,30
+Electricity,Commercial,25
+Electricity,Industrial,45
+
+Natural Gas,Residential,20
+Natural Gas,Commercial,15
+Natural Gas,Industrial,35
+
+Coal,Industrial,50
+Coal,Power Plants,100
+
+Power Plants,Electricity,100
+
+Renewable,Electricity,40</code></pre>
+<pre class="mermaid"><code>sankey-beta
+
+Budget,Marketing,250
+Budget,Development,400
+Budget,Operations,200
+Budget,HR,150
+
+Marketing,Digital,150
+Marketing,Traditional,100
+
+Development,Frontend,150
+Development,Backend,150
+Development,DevOps,100
+
+Operations,Infrastructure,100
+Operations,Support,100</code></pre>
+<hr />
+<h2 id="15-xy-chart">15. XY Chart</h2>
+<p>XY charts display data on a coordinate system.</p>
+<h3 id="bar-chart">Bar Chart</h3>
+<pre class="mermaid"><code>xychart-beta
+    title "Monthly Sales"
+    x-axis [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+    y-axis "Revenue (in $1000)" 0 --&gt; 150
+    bar [50, 60, 75, 90, 80, 95, 110, 120, 100, 85, 95, 130]</code></pre>
+<h3 id="line-chart">Line Chart</h3>
+<pre class="mermaid"><code>xychart-beta
+    title "Temperature Trend"
+    x-axis [Mon, Tue, Wed, Thu, Fri, Sat, Sun]
+    y-axis "Temperature (°C)" 0 --&gt; 40
+    line [22, 24, 26, 28, 25, 23, 21]</code></pre>
+<h3 id="combined-bar-and-line">Combined Bar and Line</h3>
+<pre class="mermaid"><code>xychart-beta
+    title "Sales vs Target"
+    x-axis [Q1, Q2, Q3, Q4]
+    y-axis "Amount ($)" 0 --&gt; 200
+    bar [120, 150, 140, 180]
+    line [100, 130, 160, 190]</code></pre>
+<hr />
+<h2 id="16-block-diagram">16. Block Diagram</h2>
+<p>Block diagrams show system components and their relationships.</p>
+<pre class="mermaid"><code>block-beta
+    columns 3
+
+    Frontend:3
+
+    space API space
+
+    block:backend:3
+        columns 3
+        Auth Database Cache
+    end
+
+    space Storage space</code></pre>
+<pre class="mermaid"><code>block-beta
+    columns 5
+
+    User space:3 Admin
+
+    space down1&lt;["  "]&gt;(down) space down2&lt;["  "]&gt;(down) space
+
+    space WebApp:3 space
+
+    space down3&lt;["  "]&gt;(down) space
+
+    space API:3 space
+
+    space down4&lt;["  "]&gt;(down) space
+
+    DB[("Database")]:5</code></pre>
+<h3 id="block-shapes">Block Shapes</h3>
+<pre class="mermaid"><code>block-beta
+    A["Rectangle"]
+    B("Rounded")
+    C(("Circle"))
+    D{{"Hexagon"}}
+    E[/"Parallelogram"/]
+    F[\\"Parallelogram Alt"\\]
+    G[("Cylinder")]
+    H&gt;"Asymmetric"]</code></pre>
+<hr />
+<h2 id="17-packet-diagram">17. Packet Diagram</h2>
+<p>Packet diagrams show the structure of network packets.</p>
+<pre class="mermaid"><code>packet-beta
+    0-15: "Source Port"
+    16-31: "Destination Port"
+    32-63: "Sequence Number"
+    64-95: "Acknowledgment Number"
+    96-99: "Data Offset"
+    100-102: "Reserved"
+    103: "NS"
+    104: "CWR"
+    105: "ECE"
+    106: "URG"
+    107: "ACK"
+    108: "PSH"
+    109: "RST"
+    110: "SYN"
+    111: "FIN"
+    112-127: "Window Size"
+    128-143: "Checksum"
+    144-159: "Urgent Pointer"
+    160-191: "Options (if Data Offset &gt; 5)"</code></pre>
+<hr />
+<h2 id="18-architecture-diagram">18. Architecture Diagram</h2>
+<p>Architecture diagrams show system architecture with cloud/infrastructure components.</p>
+<pre class="mermaid"><code>architecture-beta
+    group cloud(cloud)[Cloud Platform]
+
+    service users(internet)[Users] in cloud
+    service lb(server)[Load Balancer] in cloud
+    service api(server)[API Server] in cloud
+    service db(database)[Database] in cloud
+
+    users:R --&gt; L:lb
+    lb:R --&gt; L:api
+    api:R --&gt; L:db</code></pre>
+<hr />
+<h2 id="19-kanban-board">19. Kanban Board</h2>
+<p>Kanban diagrams visualize work items across workflow stages.</p>
+<pre class="mermaid"><code>kanban
+    column1[Todo]
+        task1[Design homepage]
+        task2[Write documentation]
+        task3[Create database schema]
+
+    column2[In Progress]
+        task4[Implement auth]
+        task5[Build API endpoints]
+
+    column3[Review]
+        task6[Code review: login]
+
+    column4[Done]
+        task7[Setup project]
+        task8[Configure CI/CD]</code></pre>
+<hr />
+<h2 id="theming-and-configuration">Theming and Configuration</h2>
+<h3 id="built-in-themes">Built-in Themes</h3>
+<p>Mermaid supports several built-in themes:
+- <code>default</code>
+- <code>neutral</code>
+- <code>dark</code>
+- <code>forest</code>
+- <code>base</code></p>
+<pre class="mermaid"><code>%%{init: {'theme': 'forest'}}%%
+flowchart LR
+    A --&gt; B --&gt; C --&gt; D</code></pre>
+<h3 id="custom-theme-variables">Custom Theme Variables</h3>
+<pre class="mermaid"><code>%%{init: {
+    'theme': 'base',
+    'themeVariables': {
+        'primaryColor': '#ff6b6b',
+        'primaryTextColor': '#fff',
+        'primaryBorderColor': '#c92a2a',
+        'lineColor': '#868e96',
+        'secondaryColor': '#ffd43b',
+        'tertiaryColor': '#e9ecef'
+    }
+}}%%
+flowchart LR
+    A[Start] --&gt; B{Decision}
+    B --&gt;|Yes| C[Action 1]
+    B --&gt;|No| D[Action 2]
+    C --&gt; E[End]
+    D --&gt; E</code></pre>
+<hr />
+<h2 id="directives-and-comments">Directives and Comments</h2>
+<h3 id="comments">Comments</h3>
+<pre class="mermaid"><code>flowchart LR
+    %% This is a comment
+    A --&gt; B
+    %% Another comment
+    B --&gt; C</code></pre>
+<h3 id="directives">Directives</h3>
+<pre class="mermaid"><code>%%{init: {"flowchart": {"htmlLabels": false}} }%%
+flowchart LR
+    A --&gt; B</code></pre>
+<hr />
+<h2 id="accessibility">Accessibility</h2>
+<p>Mermaid supports accessibility descriptions:</p>
+<pre class="mermaid"><code>flowchart LR
+    accTitle: Simple Flow
+    accDescr: A flow showing three connected nodes A, B, and C
+
+    A --&gt; B --&gt; C</code></pre>
+<hr />
+<h2 id="tips-and-best-practices">Tips and Best Practices</h2>
+<ol>
+<li><strong>Keep diagrams simple</strong>: Complex diagrams become hard to read</li>
+<li><strong>Use meaningful labels</strong>: Clear labels improve understanding</li>
+<li><strong>Choose the right diagram type</strong>: Match the diagram to your data</li>
+<li><strong>Use subgraphs for organization</strong>: Group related elements</li>
+<li><strong>Apply consistent styling</strong>: Use themes or custom styles consistently</li>
+<li><strong>Add titles and descriptions</strong>: Improve accessibility and context</li>
+<li><strong>Test rendering</strong>: Different renderers may have slight variations</li>
+</ol>
+<hr />
+<h2 id="resources">Resources</h2>
+<ul>
+<li><a href="https://mermaid.js.org/">Mermaid Official Documentation</a></li>
+<li><a href="https://mermaid.live/">Mermaid Live Editor</a></li>
+<li><a href="https://github.com/mermaid-js/mermaid">GitHub Repository</a></li>
+</ul>
+<hr />
+<p><em>This guide covers MermaidJS version 10.x. Some features may vary in different versions.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.indexes", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../js/external-links.js"></script>
+      
+    
+  </body>
+</html>

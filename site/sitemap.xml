@@ -4,4 +4,28 @@
          <loc>https://malcolm-mill.github.io/</loc>
          <lastmod>2026-01-05</lastmod>
     </url>
+    <url>
+         <loc>https://malcolm-mill.github.io/LLM/attention-and-weights-relationship/</loc>
+         <lastmod>2026-01-05</lastmod>
+    </url>
+    <url>
+         <loc>https://malcolm-mill.github.io/LLM/gguf-file-structure-guide/</loc>
+         <lastmod>2026-01-05</lastmod>
+    </url>
+    <url>
+         <loc>https://malcolm-mill.github.io/LLM/safetensors_file_structure/</loc>
+         <lastmod>2026-01-05</lastmod>
+    </url>
+    <url>
+         <loc>https://malcolm-mill.github.io/LLM/transformer-weights-explained/</loc>
+         <lastmod>2026-01-05</lastmod>
+    </url>
+    <url>
+         <loc>https://malcolm-mill.github.io/LLM/why_models_have_multiple_tensors/</loc>
+         <lastmod>2026-01-05</lastmod>
+    </url>
+    <url>
+         <loc>https://malcolm-mill.github.io/Markdown/mermaidjs-complete-guide/</loc>
+         <lastmod>2026-01-05</lastmod>
+    </url>
 </urlset>

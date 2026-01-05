@@ -1,0 +1,712 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://malcolm-mill.github.io/LLM/why_models_have_multiple_tensors/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Why AI Models Consist of Multiple Tensors - Malcolm Mill</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#why-ai-models-consist-of-multiple-tensors" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Malcolm Mill" class="md-header__button md-logo" aria-label="Malcolm Mill" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Malcolm Mill
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Why AI Models Consist of Multiple Tensors
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Malcolm Mill" class="md-nav__button md-logo" aria-label="Malcolm Mill" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Malcolm Mill
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-core-reason-neural-networks-are-graphs-of-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Core Reason: Neural Networks Are Graphs of Operations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reason-1-different-shapes-for-different-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reason 1: Different Shapes for Different Operations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reason-2-weights-vs-biases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reason 2: Weights vs. Biases
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reason-3-modularity-and-flexibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reason 3: Modularity and Flexibility
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reason-4-memory-efficiency-during-computation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reason 4: Memory Efficiency During Computation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reason-5-a-real-models-tensor-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reason 5: A Real Model's Tensor Inventory
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-not-flatten-everything-into-one-tensor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Not Flatten Everything Into One Tensor?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-mathematical-perspective" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Mathematical Perspective
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analogy-a-car-vs-its-parts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analogy: A Car vs. Its Parts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="why-ai-models-consist-of-multiple-tensors">Why AI Models Consist of Multiple Tensors</h1>
+<p>This document explains why a <code>.safetensors</code> file representing an AI model is composed of many distinct tensors rather than one giant tensor.</p>
+<hr />
+<h2 id="the-core-reason-neural-networks-are-graphs-of-operations">The Core Reason: Neural Networks Are Graphs of Operations</h2>
+<p>A neural network isn't a single mathematical operation—it's a <strong>directed graph</strong> of many distinct operations, each with its own learned parameters.</p>
+<pre class="mermaid"><code>graph LR
+    subgraph "Simple Neural Network"
+        I[Input] --&gt; L1["Layer 1&lt;br/&gt;weights + bias"]
+        L1 --&gt; A1[Activation]
+        A1 --&gt; L2["Layer 2&lt;br/&gt;weights + bias"]
+        L2 --&gt; A2[Activation]
+        A2 --&gt; L3["Layer 3&lt;br/&gt;weights + bias"]
+        L3 --&gt; O[Output]
+    end
+
+    style L1 fill:#3498db,color:#fff
+    style L2 fill:#3498db,color:#fff
+    style L3 fill:#3498db,color:#fff</code></pre>
+<p>Each blue box represents <strong>separate tensors</strong> with different shapes and purposes.</p>
+<hr />
+<h2 id="reason-1-different-shapes-for-different-operations">Reason 1: Different Shapes for Different Operations</h2>
+<p>Each layer performs a specific mathematical operation requiring a specific tensor shape.</p>
+<pre class="mermaid"><code>graph TB
+    subgraph "Transformer Block - Different Tensor Shapes"
+        EMB["Embedding&lt;br/&gt;[vocab_size × hidden_dim]&lt;br/&gt;50257 × 768"]
+
+        QKV["Q, K, V Projections&lt;br/&gt;[hidden × hidden] each&lt;br/&gt;768 × 768"]
+
+        ATT_OUT["Attention Output&lt;br/&gt;[hidden × hidden]&lt;br/&gt;768 × 768"]
+
+        FFN1["FFN Layer 1&lt;br/&gt;[hidden × 4×hidden]&lt;br/&gt;768 × 3072"]
+
+        FFN2["FFN Layer 2&lt;br/&gt;[4×hidden × hidden]&lt;br/&gt;3072 × 768"]
+
+        LN["Layer Norm&lt;br/&gt;[hidden]&lt;br/&gt;768"]
+    end
+
+    EMB --&gt; QKV --&gt; ATT_OUT --&gt; FFN1 --&gt; FFN2
+    LN -.-&gt; |"Applied at multiple points"| QKV
+
+    style EMB fill:#e74c3c,color:#fff
+    style QKV fill:#3498db,color:#fff
+    style FFN1 fill:#27ae60,color:#fff
+    style FFN2 fill:#27ae60,color:#fff
+    style LN fill:#9b59b6,color:#fff</code></pre>
+<p><strong>You cannot combine a [50257 × 768] tensor with a [768 × 768] tensor into one</strong>—they have incompatible shapes and serve different purposes.</p>
+<hr />
+<h2 id="reason-2-weights-vs-biases">Reason 2: Weights vs. Biases</h2>
+<p>Even within a single layer, weights and biases are separate tensors:</p>
+<pre class="mermaid"><code>graph LR
+    subgraph "Single Linear Layer: y = Wx + b"
+        X["Input x&lt;br/&gt;[batch, 768]"]
+        W["Weight W&lt;br/&gt;[768, 768]&lt;br/&gt;2D tensor"]
+        B["Bias b&lt;br/&gt;[768]&lt;br/&gt;1D tensor"]
+        Y["Output y&lt;br/&gt;[batch, 768]"]
+
+        X --&gt; |"matrix multiply"| MUL["×"]
+        W --&gt; MUL
+        MUL --&gt; ADD["+"]
+        B --&gt; ADD
+        ADD --&gt; Y
+    end
+
+    style W fill:#3498db,color:#fff
+    style B fill:#e74c3c,color:#fff</code></pre>
+<p>The weight is a 2D matrix, the bias is a 1D vector. Different shapes = different tensors.</p>
+<hr />
+<h2 id="reason-3-modularity-and-flexibility">Reason 3: Modularity and Flexibility</h2>
+<p>Separate tensors enable:</p>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>How Separate Tensors Help</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Fine-tuning</strong></td>
+<td>Freeze some layers, train others</td>
+</tr>
+<tr>
+<td><strong>Transfer learning</strong></td>
+<td>Replace just the final layer</td>
+</tr>
+<tr>
+<td><strong>LoRA adapters</strong></td>
+<td>Add small tensors alongside existing ones</td>
+</tr>
+<tr>
+<td><strong>Pruning</strong></td>
+<td>Remove individual layers or heads</td>
+</tr>
+<tr>
+<td><strong>Quantization</strong></td>
+<td>Apply different precision to different layers</td>
+</tr>
+<tr>
+<td><strong>Inspection</strong></td>
+<td>Analyze specific layer behaviors</td>
+</tr>
+</tbody>
+</table>
+<pre class="mermaid"><code>graph TB
+    subgraph "Fine-Tuning Example"
+        direction TB
+        FROZEN["Frozen Layers&lt;br/&gt;(loaded, not trained)"]
+        TRAINABLE["New Classification Head&lt;br/&gt;(randomly initialized, trained)"]
+
+        FROZEN --&gt; TRAINABLE
+    end
+
+    style FROZEN fill:#95a5a6,color:#fff
+    style TRAINABLE fill:#27ae60,color:#fff</code></pre>
+<p>If everything were one tensor, you couldn't selectively freeze or modify parts.</p>
+<hr />
+<h2 id="reason-4-memory-efficiency-during-computation">Reason 4: Memory Efficiency During Computation</h2>
+<p>During inference, not all tensors are needed simultaneously:</p>
+<pre class="mermaid"><code>sequenceDiagram
+    participant RAM as System RAM
+    participant GPU as GPU Memory
+    participant Compute as Computation
+
+    Note over RAM: All tensors stored
+
+    RAM-&gt;&gt;GPU: Load Layer 1 weights
+    GPU-&gt;&gt;Compute: Process Layer 1
+    GPU--&gt;&gt;RAM: Optionally offload
+
+    RAM-&gt;&gt;GPU: Load Layer 2 weights
+    GPU-&gt;&gt;Compute: Process Layer 2
+    GPU--&gt;&gt;RAM: Optionally offload
+
+    Note over GPU: Only active layer&lt;br/&gt;needs GPU memory</code></pre>
+<p>Separate tensors allow <strong>layer-by-layer streaming</strong> for models larger than GPU memory.</p>
+<hr />
+<h2 id="reason-5-a-real-models-tensor-inventory">Reason 5: A Real Model's Tensor Inventory</h2>
+<p>A typical transformer model contains these tensor categories:</p>
+<pre class="mermaid"><code>graph TB
+    subgraph "GPT-2 Style Model Tensors"
+        subgraph "Embeddings"
+            WTE["wte.weight&lt;br/&gt;Token embeddings&lt;br/&gt;[50257, 768]"]
+            WPE["wpe.weight&lt;br/&gt;Position embeddings&lt;br/&gt;[1024, 768]"]
+        end
+
+        subgraph "Per-Layer Tensors (×12 layers)"
+            LN1["ln_1.weight, ln_1.bias&lt;br/&gt;[768] each"]
+            ATT["attn.c_attn.weight&lt;br/&gt;[768, 2304]"]
+            ATTB["attn.c_attn.bias&lt;br/&gt;[2304]"]
+            PROJ["attn.c_proj.weight&lt;br/&gt;[768, 768]"]
+            LN2["ln_2.weight, ln_2.bias&lt;br/&gt;[768] each"]
+            MLP1["mlp.c_fc.weight&lt;br/&gt;[768, 3072]"]
+            MLP2["mlp.c_proj.weight&lt;br/&gt;[3072, 768]"]
+        end
+
+        subgraph "Final"
+            LNF["ln_f.weight, ln_f.bias&lt;br/&gt;[768] each"]
+        end
+    end
+
+    style WTE fill:#e74c3c,color:#fff
+    style WPE fill:#e74c3c,color:#fff
+    style ATT fill:#3498db,color:#fff
+    style MLP1 fill:#27ae60,color:#fff
+    style MLP2 fill:#27ae60,color:#fff</code></pre>
+<p>GPT-2 Small has <strong>148 separate tensors</strong>. GPT-2 XL has <strong>292 tensors</strong>. LLaMA 70B has <strong>thousands</strong>.</p>
+<hr />
+<h2 id="why-not-flatten-everything-into-one-tensor">Why Not Flatten Everything Into One Tensor?</h2>
+<p>You <em>could</em> technically concatenate all parameters into a single 1D tensor:</p>
+<pre class="mermaid"><code>graph LR
+    subgraph "Hypothetical Single Tensor"
+        FLAT["[param_0, param_1, param_2, ..., param_N]&lt;br/&gt;One giant 1D array"]
+    end
+
+    subgraph "Problems"
+        P1["❌ Lose shape information"]
+        P2["❌ Can't do matrix operations directly"]
+        P3["❌ Must reshape constantly"]
+        P4["❌ Can't load partially"]
+        P5["❌ Can't apply different dtypes"]
+    end
+
+    FLAT --&gt; P1
+    FLAT --&gt; P2
+    FLAT --&gt; P3
+    FLAT --&gt; P4
+    FLAT --&gt; P5
+
+    style FLAT fill:#e74c3c,color:#fff</code></pre>
+<p>You'd need a separate metadata structure to track where each layer's parameters begin and end, what shape to reshape them into, etc.—essentially recreating what safetensors already does, but less efficiently.</p>
+<hr />
+<h2 id="the-mathematical-perspective">The Mathematical Perspective</h2>
+<p>A neural network computes a function by composing many smaller functions:</p>
+<div class="highlight"><pre><span></span><code>output = f_n( f_{n-1}( ... f_2( f_1( input ) ) ... ) )
+</code></pre></div>
+<p>Each function <code>f_i</code> typically has the form:</p>
+<div class="highlight"><pre><span></span><code>f_i(x) = activation( W_i · x + b_i )
+</code></pre></div>
+<p>Where:
+- <code>W_i</code> is a weight matrix (2D tensor)
+- <code>b_i</code> is a bias vector (1D tensor)
+- Each layer has its own <code>W</code> and <code>b</code></p>
+<p>This mathematical structure <strong>inherently requires multiple separate parameter tensors</strong>.</p>
+<hr />
+<h2 id="analogy-a-car-vs-its-parts">Analogy: A Car vs. Its Parts</h2>
+<p>Think of asking "why does a car have multiple parts instead of one?"</p>
+<pre class="mermaid"><code>graph TB
+    subgraph "A Car's Components"
+        ENGINE["Engine&lt;br/&gt;(converts fuel to motion)"]
+        TRANS["Transmission&lt;br/&gt;(transfers power)"]
+        WHEELS["Wheels&lt;br/&gt;(contact ground)"]
+        STEERING["Steering&lt;br/&gt;(direction control)"]
+        BRAKES["Brakes&lt;br/&gt;(stopping)"]
+    end
+
+    ENGINE --&gt; TRANS --&gt; WHEELS
+    STEERING --&gt; WHEELS
+    BRAKES --&gt; WHEELS
+
+    style ENGINE fill:#e74c3c,color:#fff
+    style TRANS fill:#3498db,color:#fff
+    style WHEELS fill:#27ae60,color:#fff</code></pre>
+<p>Each component:
+- Has a <strong>different shape</strong> (you can't combine an engine and a wheel)
+- Serves a <strong>different function</strong>
+- Can be <strong>replaced independently</strong>
+- Must be <strong>connected in a specific way</strong></p>
+<p>Neural network tensors are the same—each serves a specific purpose in the computation.</p>
+<hr />
+<h2 id="summary">Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Reason</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Mathematical necessity</strong></td>
+<td>Different operations require different tensor shapes</td>
+</tr>
+<tr>
+<td><strong>Architectural structure</strong></td>
+<td>Networks are graphs of distinct operations</td>
+</tr>
+<tr>
+<td><strong>Weights vs. biases</strong></td>
+<td>Even one layer has multiple parameter tensors</td>
+</tr>
+<tr>
+<td><strong>Modularity</strong></td>
+<td>Enables fine-tuning, pruning, quantization</td>
+</tr>
+<tr>
+<td><strong>Memory management</strong></td>
+<td>Allows streaming and partial loading</td>
+</tr>
+<tr>
+<td><strong>Framework design</strong></td>
+<td>PyTorch/TensorFlow organize models as named parameter collections</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="conclusion">Conclusion</h2>
+<p><strong>The multiple-tensor design directly mirrors the mathematical structure of neural networks.</strong> Each tensor represents a learnable parameter matrix or vector for a specific operation in the computation graph.</p>
+<p>A single-tensor design would:
+1. Lose the natural correspondence between tensors and operations
+2. Require constant reshaping during computation
+3. Prevent partial loading and fine-tuning
+4. Make the model file format more complex, not simpler</p>
+<p>The safetensors format (and all model formats) use multiple named tensors because that's what neural networks fundamentally are: collections of distinct, shaped parameter arrays connected in a computation graph.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.indexes", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../js/external-links.js"></script>
+      
+    
+  </body>
+</html>
