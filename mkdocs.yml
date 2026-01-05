@@ -9,16 +9,9 @@ theme:
     - content.code.copy
     - toc.follow
 
-nav:
-  - Home: index.md
-  - LLM:
-    - Attention and Weights Relationship: LLM/attention-and-weights-relationship.md
-    - GGUF File Structure Guide: LLM/gguf-file-structure-guide.md
-    - SafeTensors File Structure: LLM/safetensors_file_structure.md
-    - Transformer Weights Explained: LLM/transformer-weights-explained.md
-    - Why Models Have Multiple Tensors: LLM/why_models_have_multiple_tensors.md
-  - Markdown:
-    - MermaidJS Complete Guide: Markdown/mermaidjs-complete-guide.md
+plugins:
+  - search
+  - awesome-pages
 
 markdown_extensions:
   - admonition
