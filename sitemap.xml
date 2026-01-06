@@ -2,38 +2,46 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://malcolm-mill.github.io/</loc>
-         <lastmod>2026-01-05</lastmod>
+         <lastmod>2026-01-06</lastmod>
     </url>
     <url>
          <loc>https://malcolm-mill.github.io/ChatGPT%20Dump/chatgpt_dump_overview/</loc>
-         <lastmod>2026-01-05</lastmod>
+         <lastmod>2026-01-06</lastmod>
     </url>
     <url>
          <loc>https://malcolm-mill.github.io/ChatGPT%20Dump/conversations_structure/</loc>
-         <lastmod>2026-01-05</lastmod>
+         <lastmod>2026-01-06</lastmod>
+    </url>
+    <url>
+         <loc>https://malcolm-mill.github.io/ChatGPT%20Dump/list_projects_script_documentation/</loc>
+         <lastmod>2026-01-06</lastmod>
+    </url>
+    <url>
+         <loc>https://malcolm-mill.github.io/ChatGPT%20Dump/my_projects_list/</loc>
+         <lastmod>2026-01-06</lastmod>
     </url>
     <url>
          <loc>https://malcolm-mill.github.io/LLM/attention-and-weights-relationship/</loc>
-         <lastmod>2026-01-05</lastmod>
+         <lastmod>2026-01-06</lastmod>
     </url>
     <url>
          <loc>https://malcolm-mill.github.io/LLM/gguf-file-structure-guide/</loc>
-         <lastmod>2026-01-05</lastmod>
+         <lastmod>2026-01-06</lastmod>
     </url>
     <url>
          <loc>https://malcolm-mill.github.io/LLM/safetensors_file_structure/</loc>
-         <lastmod>2026-01-05</lastmod>
+         <lastmod>2026-01-06</lastmod>
     </url>
     <url>
          <loc>https://malcolm-mill.github.io/LLM/transformer-weights-explained/</loc>
-         <lastmod>2026-01-05</lastmod>
+         <lastmod>2026-01-06</lastmod>
     </url>
     <url>
          <loc>https://malcolm-mill.github.io/LLM/why_models_have_multiple_tensors/</loc>
-         <lastmod>2026-01-05</lastmod>
+         <lastmod>2026-01-06</lastmod>
     </url>
     <url>
          <loc>https://malcolm-mill.github.io/Markdown/mermaidjs-complete-guide/</loc>
-         <lastmod>2026-01-05</lastmod>
+         <lastmod>2026-01-06</lastmod>
     </url>
 </urlset>
