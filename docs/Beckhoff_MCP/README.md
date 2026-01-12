@@ -1,4 +1,4 @@
-# Beckhoff PLC MCP Server
+# Startup Guide
 
 An MCP (Model Context Protocol) server that provides read-only access to Beckhoff TwinCAT PLCs via ADS (Automation Device Specification).
 

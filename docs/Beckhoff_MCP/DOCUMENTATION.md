@@ -1,4 +1,4 @@
-# Beckhoff PLC MCP Server
+# Beckhoff PLC MCP Server Documentation
 
 ## What is this?
 

@@ -1,0 +1,2037 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://malcolm-mill.github.io/Beckhoff_MCP/BECKHOFF_MCP_README/">
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../DOCUMENTATION/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Beckhoff PLC MCP Server - Malcolm Mill</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#beckhoff-plc-mcp-server" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Malcolm Mill" class="md-header__button md-logo" aria-label="Malcolm Mill" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Malcolm Mill
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Beckhoff PLC MCP Server
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Malcolm Mill" class="md-nav__button md-logo" aria-label="Malcolm Mill" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Malcolm Mill
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Beckhoff MCP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Beckhoff MCP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Beckhoff PLC MCP Server
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Beckhoff PLC MCP Server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Features
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uninstallation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Uninstallation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-connection-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default Connection Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dynamic-connection-runtime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dynamic Connection (Runtime)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-ams-port-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common AMS Port Numbers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#running-the-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running the Server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claude-desktop-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claude Desktop Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#available-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Available Tools
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Available Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#beckhoff_get_device_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        beckhoff_get_device_info
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beckhoff_get_device_state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        beckhoff_get_device_state
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beckhoff_list_symbols" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        beckhoff_list_symbols
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beckhoff_get_symbol_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        beckhoff_get_symbol_info
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beckhoff_read_variable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        beckhoff_read_variable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beckhoff_read_variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        beckhoff_read_variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beckhoff_discover_and_connect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        beckhoff_discover_and_connect
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beckhoff_connection_status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        beckhoff_connection_status
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ethercat-diagnostic-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EtherCAT Diagnostic Tools
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="EtherCAT Diagnostic Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#beckhoff_get_ethercat_master_state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        beckhoff_get_ethercat_master_state
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beckhoff_get_ethercat_slave_count" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        beckhoff_get_ethercat_slave_count
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beckhoff_get_ethercat_topology" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        beckhoff_get_ethercat_topology
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beckhoff_get_ethercat_slave_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        beckhoff_get_ethercat_slave_info
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-ads-port-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom ADS Port Tools
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Custom ADS Port Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#beckhoff_query_ads_port" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        beckhoff_query_ads_port
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beckhoff_read_from_port" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        beckhoff_read_from_port
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supported-data-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supported Data Types
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#connection-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connection Errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#symbol-not-found" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Symbol Not Found
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#license" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        License
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DOCUMENTATION/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Beckhoff PLC MCP Server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LM_STUDIO_GUIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using Beckhoff MCP with LM Studio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    LLM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM/attention-and-weights-relationship/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The Relationship Between Attention and Weights
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM/gguf-file-structure-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GGUF File Format: Complete Structural Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM/safetensors_file_structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Safetensors File Format Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM/transformer-weights-explained/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transformer Weights Explained: What They Actually Are
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM/why_models_have_multiple_tensors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Why AI Models Consist of Multiple Tensors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Markdown
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Markdown
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Markdown/mermaidjs-complete-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MermaidJS Complete Diagram Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Features
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uninstallation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Uninstallation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-connection-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default Connection Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dynamic-connection-runtime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dynamic Connection (Runtime)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-ams-port-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common AMS Port Numbers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#running-the-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running the Server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claude-desktop-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claude Desktop Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#available-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Available Tools
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Available Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#beckhoff_get_device_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        beckhoff_get_device_info
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beckhoff_get_device_state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        beckhoff_get_device_state
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beckhoff_list_symbols" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        beckhoff_list_symbols
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beckhoff_get_symbol_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        beckhoff_get_symbol_info
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beckhoff_read_variable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        beckhoff_read_variable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beckhoff_read_variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        beckhoff_read_variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beckhoff_discover_and_connect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        beckhoff_discover_and_connect
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beckhoff_connection_status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        beckhoff_connection_status
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ethercat-diagnostic-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EtherCAT Diagnostic Tools
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="EtherCAT Diagnostic Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#beckhoff_get_ethercat_master_state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        beckhoff_get_ethercat_master_state
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beckhoff_get_ethercat_slave_count" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        beckhoff_get_ethercat_slave_count
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beckhoff_get_ethercat_topology" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        beckhoff_get_ethercat_topology
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beckhoff_get_ethercat_slave_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        beckhoff_get_ethercat_slave_info
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-ads-port-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom ADS Port Tools
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Custom ADS Port Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#beckhoff_query_ads_port" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        beckhoff_query_ads_port
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beckhoff_read_from_port" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        beckhoff_read_from_port
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supported-data-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supported Data Types
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#connection-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connection Errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#symbol-not-found" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Symbol Not Found
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#license" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        License
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="beckhoff-plc-mcp-server">Beckhoff PLC MCP Server</h1>
+<p>An MCP (Model Context Protocol) server that provides read-only access to Beckhoff TwinCAT PLCs via ADS (Automation Device Specification).</p>
+<h2 id="features">Features</h2>
+<ul>
+<li>Query PLC device information and state</li>
+<li>List and search PLC symbols</li>
+<li>Read single or multiple PLC variables</li>
+<li><strong>Dynamic PLC discovery and connection</strong> via UDP (port 48899)</li>
+<li><strong>EtherCAT diagnostics</strong> - master state, slave count, topology, and slave info</li>
+<li><strong>Custom ADS port access</strong> - query and read from any ADS port (e.g., I/O Image ports)</li>
+<li><strong>Graceful startup</strong> - server starts even if no local PLC is connected</li>
+<li>Automatic ADS route creation</li>
+<li>Automatic symbol caching for fast lookups</li>
+<li>Support for common TwinCAT data types</li>
+</ul>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>Python 3.10 or higher</li>
+<li>Beckhoff TwinCAT runtime with ADS enabled</li>
+<li>ADS routing configured (for remote PLCs)</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># Clone or navigate to the project directory</span>
+<span class="nb">cd</span><span class="w"> </span>beckhoff_mcp
+
+<span class="c1"># Install with pip</span>
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+
+<span class="c1"># Or install dependencies directly</span>
+pip<span class="w"> </span>install<span class="w"> </span>mcp<span class="w"> </span>pyads<span class="w"> </span>pydantic
+</code></pre></div>
+<h2 id="uninstallation">Uninstallation</h2>
+<p>To uninstall the current version before installing a new one:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Uninstall the package</span>
+pip<span class="w"> </span>uninstall<span class="w"> </span>beckhoff_mcp
+
+<span class="c1"># Verify it&#39;s removed</span>
+pip<span class="w"> </span>show<span class="w"> </span>beckhoff_mcp
+</code></pre></div>
+<h2 id="configuration">Configuration</h2>
+<h3 id="default-connection-settings">Default Connection Settings</h3>
+<p>The server attempts to connect to a local TwinCAT PLC on startup:</p>
+<div class="highlight"><pre><span></span><code><span class="n">AMS_NET_ID</span> <span class="o">=</span> <span class="s2">&quot;127.0.0.1.1.1&quot;</span>  <span class="c1"># Localhost AMS Net ID</span>
+<span class="n">AMS_PORT</span> <span class="o">=</span> <span class="mi">851</span>                 <span class="c1"># TwinCAT 3 PLC Runtime 1</span>
+</code></pre></div>
+<p><strong>Note:</strong> If no local PLC is available (e.g., TwinCAT is not running or is in Config mode), the server will start in <strong>disconnected mode</strong>. You can then use <code>beckhoff_discover_and_connect</code> to connect to a remote PLC.</p>
+<p>To modify the default settings, edit <code>src/beckhoff_mcp/server.py</code> and update the constants at the top of the file.</p>
+<h3 id="dynamic-connection-runtime">Dynamic Connection (Runtime)</h3>
+<p>You can also connect to remote PLCs at runtime using the <code>beckhoff_discover_and_connect</code> tool. Simply ask Claude to connect to a specific IP address:</p>
+<div class="highlight"><pre><span></span><code>&lt;beckhoff:mcp: ip=192.168.1.54&gt;
+</code></pre></div>
+<p>Or with credentials for automatic route creation:</p>
+<div class="highlight"><pre><span></span><code>Connect to PLC at 192.168.1.54 with username admin and password secret
+</code></pre></div>
+<h3 id="common-ams-port-numbers">Common AMS Port Numbers</h3>
+<table>
+<thead>
+<tr>
+<th>Port</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>851</td>
+<td>TwinCAT 3 PLC Runtime 1</td>
+</tr>
+<tr>
+<td>852</td>
+<td>TwinCAT 3 PLC Runtime 2</td>
+</tr>
+<tr>
+<td>853</td>
+<td>TwinCAT 3 PLC Runtime 3</td>
+</tr>
+<tr>
+<td>854</td>
+<td>TwinCAT 3 PLC Runtime 4</td>
+</tr>
+</tbody>
+</table>
+<h2 id="usage">Usage</h2>
+<h3 id="running-the-server">Running the Server</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Using the installed script</span>
+beckhoff_mcp
+
+<span class="c1"># Or run directly</span>
+python<span class="w"> </span>-m<span class="w"> </span>beckhoff_mcp.server
+</code></pre></div>
+<h3 id="claude-desktop-configuration">Claude Desktop Configuration</h3>
+<p>Add to your Claude Desktop config (<code>claude_desktop_config.json</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;mcpServers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;beckhoff_mcp&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;python&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;-m&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;beckhoff_mcp.server&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Or if installed as a package:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;mcpServers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;beckhoff_mcp&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;beckhoff_mcp&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="available-tools">Available Tools</h2>
+<h3 id="beckhoff_get_device_info"><code>beckhoff_get_device_info</code></h3>
+<p>Get PLC device name and version information.</p>
+<p><strong>Input:</strong> None</p>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;device_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TwinCAT PLC&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;major&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;minor&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;build&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4024</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h3 id="beckhoff_get_device_state"><code>beckhoff_get_device_state</code></h3>
+<p>Get current ADS state and device state.</p>
+<p><strong>Input:</strong> None</p>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;ads_state&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Run&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;device_state&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h3 id="beckhoff_list_symbols"><code>beckhoff_list_symbols</code></h3>
+<p>List available PLC symbols with optional filtering and pagination.</p>
+<p><strong>Input:</strong>
+- <code>filter</code> (optional): Filter pattern with wildcards (e.g., <code>"GVL_*"</code>, <code>"*Motor*"</code>)
+- <code>limit</code> (optional, default 50): Maximum results to return
+- <code>offset</code> (optional, default 0): Pagination offset</p>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;symbols&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GVL.bStart&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BOOL&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;comment&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Start button&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GVL.nCounter&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;INT&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;comment&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Cycle counter&quot;</span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;pagination&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;offset&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;returned&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;has_more&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;next_offset&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h3 id="beckhoff_get_symbol_info"><code>beckhoff_get_symbol_info</code></h3>
+<p>Get detailed information about a specific symbol.</p>
+<p><strong>Input:</strong>
+- <code>symbol_name</code> (required): Full symbol name (e.g., <code>"MAIN.bStart"</code>)</p>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MAIN.bStart&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BOOL&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;index_group&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">16448</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;index_offset&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;comment&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Start button&quot;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h3 id="beckhoff_read_variable"><code>beckhoff_read_variable</code></h3>
+<p>Read a single PLC variable by symbol name.</p>
+<p><strong>Input:</strong>
+- <code>symbol_name</code> (required): Full variable name (e.g., <code>"GVL.nCounter"</code>)</p>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GVL.nCounter&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;INT&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h3 id="beckhoff_read_variables"><code>beckhoff_read_variables</code></h3>
+<p>Read multiple PLC variables at once.</p>
+<p><strong>Input:</strong>
+- <code>symbol_names</code> (required): List of variable names</p>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;results&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GVL.bStart&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BOOL&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GVL.nCounter&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;INT&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;errors&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;requested&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;successful&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;failed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h3 id="beckhoff_discover_and_connect"><code>beckhoff_discover_and_connect</code></h3>
+<p>Discover and connect to a remote PLC by IP address using UDP discovery.</p>
+<p><strong>Input:</strong>
+- <code>ip_address</code> (required): IP address of the target PLC
+- <code>username</code> (optional): PLC login for route creation
+- <code>password</code> (optional): PLC password for route creation
+- <code>ams_port</code> (optional, default 851): ADS port number
+- <code>route_name</code> (optional): Custom name for the route</p>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ip_address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;192.168.1.54&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;discovered_ams_net_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;192.168.1.54.1.1&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ams_port&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">851</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;route_added&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;device_info&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;device_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CX-12345&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;revision&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;build&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4024</span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;symbols_cached&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h3 id="beckhoff_connection_status"><code>beckhoff_connection_status</code></h3>
+<p>Get information about the current PLC connection.</p>
+<p><strong>Input:</strong> None</p>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;ams_net_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;192.168.1.54.1.1&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ams_port&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">851</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ip_address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;192.168.1.54&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;is_remote&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;is_connected&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;symbols_cached&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h2 id="ethercat-diagnostic-tools">EtherCAT Diagnostic Tools</h2>
+<h3 id="beckhoff_get_ethercat_master_state"><code>beckhoff_get_ethercat_master_state</code></h3>
+<p>Get the EtherCAT master state (Init, PreOp, SafeOp, Op).</p>
+<p><strong>Input:</strong> None</p>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;master_state&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Op&quot;</span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;ams_net_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;192.168.1.54.1.1&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ethercat_port&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">65535</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h3 id="beckhoff_get_ethercat_slave_count"><code>beckhoff_get_ethercat_slave_count</code></h3>
+<p>Get the number of connected EtherCAT slaves.</p>
+<p><strong>Input:</strong> None</p>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;slave_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ams_net_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;192.168.1.54.1.1&quot;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h3 id="beckhoff_get_ethercat_topology"><code>beckhoff_get_ethercat_topology</code></h3>
+<p>Get the full EtherCAT network topology with all slave information.</p>
+<p><strong>Input:</strong> None</p>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;slave_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;slaves&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;address&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Op&quot;</span><span class="p">},</span><span class="w"> </span><span class="nt">&quot;vendor_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;product_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100663346</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;address&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Op&quot;</span><span class="p">},</span><span class="w"> </span><span class="nt">&quot;vendor_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;product_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100728882</span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;ams_net_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;192.168.1.54.1.1&quot;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h3 id="beckhoff_get_ethercat_slave_info"><code>beckhoff_get_ethercat_slave_info</code></h3>
+<p>Get detailed information about a specific EtherCAT slave.</p>
+<p><strong>Input:</strong>
+- <code>slave_address</code> (required): The slave address (1-indexed)</p>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;address&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Op&quot;</span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;vendor_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;product_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100663346</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;crc_errors&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ams_net_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;192.168.1.54.1.1&quot;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h2 id="custom-ads-port-tools">Custom ADS Port Tools</h2>
+<p>Some EtherCAT devices (like EK1200 EtherCAT Couplers) expose their I/O data on custom ADS ports rather than the standard EtherCAT master port (0xFFFF). Use these tools to access such devices.</p>
+<h3 id="beckhoff_query_ads_port"><code>beckhoff_query_ads_port</code></h3>
+<p>Query a custom ADS port to discover available symbols and device information.</p>
+<p><strong>Input:</strong>
+- <code>ads_port</code> (required): The ADS port number (e.g., 27905 or 0x6D01)</p>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;ads_port&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">27905</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ads_port_hex&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0x6D01&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ams_net_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;5.59.203.226.1.1&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ip_address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;192.168.1.67&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;device_info&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;device_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EK1200&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;revision&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;build&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4024</span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;ads_state&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Run&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;device_state&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;symbol_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;symbols_preview&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Inputs.EL1008.Channel 1.Input&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BOOL&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Outputs.EL2008.Channel 1.Output&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BOOL&quot;</span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h3 id="beckhoff_read_from_port"><code>beckhoff_read_from_port</code></h3>
+<p>Read a variable from a custom ADS port.</p>
+<p><strong>Input:</strong>
+- <code>ads_port</code> (required): The ADS port number (e.g., 27905)
+- <code>symbol_name</code> (required): The symbol name to read</p>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Inputs.EL1008.Channel 1.Input&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BOOL&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ads_port&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">27905</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p><strong>How to find the ADS port:</strong> In TwinCAT XAE, double-click on the device (e.g., under I/O &gt; Devices &gt; EtherCAT), go to the "ADS" tab, and note the "ADS Server Port" value.</p>
+<h2 id="supported-data-types">Supported Data Types</h2>
+<table>
+<thead>
+<tr>
+<th>TwinCAT Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BOOL</td>
+<td>Boolean (TRUE/FALSE)</td>
+</tr>
+<tr>
+<td>BYTE</td>
+<td>8-bit unsigned</td>
+</tr>
+<tr>
+<td>SINT</td>
+<td>8-bit signed</td>
+</tr>
+<tr>
+<td>USINT</td>
+<td>8-bit unsigned</td>
+</tr>
+<tr>
+<td>INT</td>
+<td>16-bit signed</td>
+</tr>
+<tr>
+<td>UINT</td>
+<td>16-bit unsigned</td>
+</tr>
+<tr>
+<td>DINT</td>
+<td>32-bit signed</td>
+</tr>
+<tr>
+<td>UDINT</td>
+<td>32-bit unsigned</td>
+</tr>
+<tr>
+<td>LINT</td>
+<td>64-bit signed</td>
+</tr>
+<tr>
+<td>ULINT</td>
+<td>64-bit unsigned</td>
+</tr>
+<tr>
+<td>REAL</td>
+<td>32-bit float</td>
+</tr>
+<tr>
+<td>LREAL</td>
+<td>64-bit float</td>
+</tr>
+<tr>
+<td>STRING</td>
+<td>Text string</td>
+</tr>
+<tr>
+<td>TIME, DATE, DT, TOD</td>
+<td>Time types (as UDINT)</td>
+</tr>
+<tr>
+<td>WORD, DWORD, LWORD</td>
+<td>Bit string types</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> Complex types (arrays, structures) are not fully supported for reading. The server will return type information but may not be able to read the value directly.</p>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="connection-errors">Connection Errors</h3>
+<p>If you see connection errors:</p>
+<ol>
+<li><strong>Verify TwinCAT is running</strong>: Check that TwinCAT System Service is running and the PLC is in Run mode</li>
+<li><strong>Check AMS Net ID</strong>: Ensure the AMS Net ID in the server matches your system (run <code>hostname</code> in TwinCAT XAE to find it)</li>
+<li><strong>Verify ADS routing</strong>: For remote connections, ensure ADS routes are configured on both systems</li>
+<li><strong>Check firewall</strong>: ADS uses TCP port 48898 by default</li>
+</ol>
+<h3 id="symbol-not-found">Symbol Not Found</h3>
+<p>If symbols are not found:</p>
+<ol>
+<li>Ensure the PLC project is activated and running</li>
+<li>Check the exact symbol name including namespace (e.g., <code>MAIN.</code>, <code>GVL.</code>)</li>
+<li>Symbol names are case-sensitive</li>
+<li>Try <code>beckhoff_list_symbols</code> with a filter to find the correct name</li>
+</ol>
+<h2 id="license">License</h2>
+<p>MIT License</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.indexes", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../js/external-links.js"></script>
+      
+    
+  </body>
+</html>
