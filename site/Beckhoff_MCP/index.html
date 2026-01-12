@@ -8,28 +8,28 @@
       
       
       
-        <link rel="canonical" href="https://malcolm-mill.github.io/Beckhoff_MCP/BECKHOFF_MCP_README/">
+        <link rel="canonical" href="https://malcolm-mill.github.io/Beckhoff_MCP/">
       
       
-        <link rel="prev" href="../..">
+        <link rel="prev" href="..">
       
       
-        <link rel="next" href="../DOCUMENTATION/">
+        <link rel="next" href="DOCUMENTATION/">
       
       
         
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
-        <title>Beckhoff PLC MCP Server - Malcolm Mill</title>
+        <title>Startup Guide - Malcolm Mill</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
       
       
 
@@ -48,7 +48,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#beckhoff-plc-mcp-server" class="md-skip">
+        <a href="#startup-guide" class="md-skip">
           Skip to content
         </a>
       
@@ -82,7 +82,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Malcolm Mill" class="md-header__button md-logo" aria-label="Malcolm Mill" data-md-component="logo">
+    <a href=".." title="Malcolm Mill" class="md-header__button md-logo" aria-label="Malcolm Mill" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Beckhoff PLC MCP Server
+              Startup Guide
             
           </span>
         </div>
@@ -180,7 +180,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Malcolm Mill" class="md-nav__button md-logo" aria-label="Malcolm Mill" data-md-component="logo">
+    <a href=".." title="Malcolm Mill" class="md-nav__button md-logo" aria-label="Malcolm Mill" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -198,7 +198,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href=".." class="md-nav__link">
         
   
   
@@ -230,6 +230,8 @@
     
       
         
+          
+        
       
         
       
@@ -251,8 +253,9 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="./" class="md-nav__link md-nav__link--active">
+              
   
   
   <span class="md-ellipsis">
@@ -266,8 +269,14 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link md-nav__link--active" for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
@@ -281,478 +290,6 @@
           <ul class="md-nav__list" data-md-scrollfix>
             
               
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Beckhoff PLC MCP Server
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Beckhoff PLC MCP Server
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#features" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Features
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Prerequisites
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Installation
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#uninstallation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Uninstallation
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Configuration
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Configuration">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#default-connection-settings" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Default Connection Settings
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#dynamic-connection-runtime" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Dynamic Connection (Runtime)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#common-ams-port-numbers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Common AMS Port Numbers
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Usage
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Usage">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#running-the-server" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Running the Server
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#claude-desktop-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Claude Desktop Configuration
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#available-tools" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Available Tools
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Available Tools">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#beckhoff_get_device_info" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        beckhoff_get_device_info
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#beckhoff_get_device_state" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        beckhoff_get_device_state
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#beckhoff_list_symbols" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        beckhoff_list_symbols
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#beckhoff_get_symbol_info" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        beckhoff_get_symbol_info
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#beckhoff_read_variable" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        beckhoff_read_variable
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#beckhoff_read_variables" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        beckhoff_read_variables
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#beckhoff_discover_and_connect" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        beckhoff_discover_and_connect
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#beckhoff_connection_status" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        beckhoff_connection_status
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ethercat-diagnostic-tools" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        EtherCAT Diagnostic Tools
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="EtherCAT Diagnostic Tools">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#beckhoff_get_ethercat_master_state" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        beckhoff_get_ethercat_master_state
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#beckhoff_get_ethercat_slave_count" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        beckhoff_get_ethercat_slave_count
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#beckhoff_get_ethercat_topology" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        beckhoff_get_ethercat_topology
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#beckhoff_get_ethercat_slave_info" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        beckhoff_get_ethercat_slave_info
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#custom-ads-port-tools" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Custom ADS Port Tools
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Custom ADS Port Tools">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#beckhoff_query_ads_port" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        beckhoff_query_ads_port
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#beckhoff_read_from_port" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        beckhoff_read_from_port
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#supported-data-types" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Supported Data Types
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#troubleshooting" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Troubleshooting
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Troubleshooting">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#connection-errors" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Connection Errors
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#symbol-not-found" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Symbol Not Found
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#license" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        License
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
             
               
                 
@@ -761,14 +298,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../DOCUMENTATION/" class="md-nav__link">
+      <a href="DOCUMENTATION/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Beckhoff PLC MCP Server
+    Beckhoff PLC MCP Server Documentation
   
 
     
@@ -789,7 +326,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../LM_STUDIO_GUIDE/" class="md-nav__link">
+      <a href="LM_STUDIO_GUIDE/" class="md-nav__link">
         
   
   
@@ -888,7 +425,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../LLM/attention-and-weights-relationship/" class="md-nav__link">
+      <a href="../LLM/attention-and-weights-relationship/" class="md-nav__link">
         
   
   
@@ -916,7 +453,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../LLM/gguf-file-structure-guide/" class="md-nav__link">
+      <a href="../LLM/gguf-file-structure-guide/" class="md-nav__link">
         
   
   
@@ -944,7 +481,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../LLM/safetensors_file_structure/" class="md-nav__link">
+      <a href="../LLM/safetensors_file_structure/" class="md-nav__link">
         
   
   
@@ -972,7 +509,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../LLM/transformer-weights-explained/" class="md-nav__link">
+      <a href="../LLM/transformer-weights-explained/" class="md-nav__link">
         
   
   
@@ -1000,7 +537,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../LLM/why_models_have_multiple_tensors/" class="md-nav__link">
+      <a href="../LLM/why_models_have_multiple_tensors/" class="md-nav__link">
         
   
   
@@ -1091,7 +628,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Markdown/mermaidjs-complete-guide/" class="md-nav__link">
+      <a href="../Markdown/mermaidjs-complete-guide/" class="md-nav__link">
         
   
   
@@ -1561,7 +1098,7 @@
 
 
 
-<h1 id="beckhoff-plc-mcp-server">Beckhoff PLC MCP Server</h1>
+<h1 id="startup-guide">Startup Guide</h1>
 <p>An MCP (Model Context Protocol) server that provides read-only access to Beckhoff TwinCAT PLCs via ADS (Automation Device Specification).</p>
 <h2 id="features">Features</h2>
 <ul>
@@ -2025,12 +1562,12 @@ python<span class="w"> </span>-m<span class="w"> </span>beckhoff_mcp.server
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.indexes", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.indexes", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="../../js/external-links.js"></script>
+        <script src="../js/external-links.js"></script>
       
     
   </body>
